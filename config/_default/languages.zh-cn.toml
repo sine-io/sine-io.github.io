@@ -1,0 +1,84 @@
+# 此文件的 Hugo 语言代码。它可以是顶级语言（即 en）或子变体（即 en-AU），并应与文件名中的语言代码匹配。
+languageCode = "zh-cn"
+
+# 语言的名称
+languageName = "简体中文"
+
+# 这是否是 RTL 语言。设置为 "rtl" 以从右到左重新排列内容。Congo 完全支持同时使用 RTL 和 LTR 语言，并会动态调整到两者。
+languageDirection = "ltr"
+
+# 构建多语言站点时语言的顺序的权重
+weight = 1
+
+# 网站的标题。这将显示在站点标题和页脚中。
+title = "SineIO"
+
+# 包含要显示在站点页脚中的版权消息的 Markdown 字符串。如果未提供，则 Congo 将使用站点 title 自动生成版权字符串。
+# copyright = "&copy; 2024 SineIO"
+
+[params]
+  # 此语言中日期的格式。有关可接受格式，
+  dateFormat = "2006年1月2日"
+  
+  # 显示在最新文章列表中的部分。如果未提供，则使用文章数最多的部分。
+  mainSections = ["posts"]
+
+  # 网站描述。这将用于站点元数据。
+  description = "重要的东西用眼睛是看不见的，只有用心才能看得清楚。"
+
+[params.author]
+  # 作者的姓名。这将显示在文章页脚和使用配置文件布局时在主页上。
+  name = "SineCelia"
+  # 作者的图像文件路径。图像应为1:1的宽高比，并放置在站点的 assets/ 文件夹中。
+  image = "img/author.jpg"
+  # 包含作者头衔的 Markdown 字符串。它将显示在主页上作者姓名下方。
+  headline = "天行健，君子以自强不息。"
+  # 包含作者简介的 Markdown 字符串。它将显示在文章页脚中。
+  bio = "工具拆解，使用教程，深入浅出，硬核，真男人！"
+
+  # 要显示在作者详细信息旁边的链接。配置文件包含可以取消注释以启用的示例链接。显示链接的顺序由它们在数组中出现的顺序确定。可以通过在 assets/icons/ 中提供相应的 SVG 图标资产来添加自定义链接。
+  links = [
+    # { email = "sinecelia.wang@gmail.com" },
+  #   { link = "https://link-to-some-website.com/" },
+  #   { amazon = "https://www.amazon.com/hz/wishlist/ls/wishlist-id" },
+  #   { apple = "https://www.apple.com" },
+  #   { blogger = "https://username.blogspot.com/" },
+  #   { codepen = "https://codepen.io/username" },
+  #   { dev = "https://dev.to/username" },
+  #   { discord = "https://discord.gg/invitecode" },
+  #   { dribbble = "https://dribbble.com/username" },
+  #   { facebook = "https://facebook.com/username" },
+  #   { flickr = "https://www.flickr.com/photos/username/" },
+  #   { foursquare = "https://foursquare.com/username" },
+    { github = "https://github.com/sine-io" },
+  #   { gitlab = "https://gitlab.com/username" },
+  #   { google = "https://www.google.com/" },
+  #   { google-scholar = "https://scholar.google.com/citations?user=user-id" },
+  #   { hashnode = "https://username.hashnode.dev" },
+  #   { instagram = "https://instagram.com/username" },
+  #   { keybase = "https://keybase.io/username" },
+  #   { kickstarter = "https://www.kickstarter.com/profile/username" },
+  #   { lastfm = "https://lastfm.com/user/username" },
+  #   { linkedin = "https://linkedin.com/in/username" },
+  #   { mastodon = "https://mastodon.instance/@username" },
+  #   { medium = "https://medium.com/username" },
+  #   { mendeley = "https://www.mendeley.com/" },
+  #   { microsoft = "https://www.microsoft.com/" },
+  #   { orcid = "https://orcid.org/userid" },
+  #   { patreon = "https://www.patreon.com/username" },
+  #   { pinterest = "https://pinterest.com/username" },
+  #   { reddit = "https://reddit.com/user/username" },
+  #   { researchgate = "https://www.researchgate.net/profile/username" },
+  #   { slack = "https://workspace.url/team/userid" },
+  #   { snapchat = "https://snapchat.com/add/username" },
+  #   { soundcloud = "https://soundcloud.com/username" },
+  #   { stack-overflow = "https://stackoverflow.com/users/userid/username" },
+  #   { steam = "https://steamcommunity.com/profiles/userid" },
+  #   { telegram = "https://t.me/username" },
+  #   { tiktok = "https://tiktok.com/@username" },
+  #   { tumblr = "https://username.tumblr.com" },
+  #   { twitch = "https://twitch.tv/username" },
+  #   { whatsapp = "https://wa.me/phone-number" },
+    { x-twitter = "https://twitter.com/SineCelia" },
+  #   { youtube = "https://youtube.com/username" },
+  ]

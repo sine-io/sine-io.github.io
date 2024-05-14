@@ -1,0 +1,138 @@
+# https://jpanther.github.io/congo/docs/configuration/#theme-parameters
+
+# 要使用的主题颜色方案。有效值为 congo（默认）、avocado、cherry、fire、ocean、sapphire 和 slate。
+colorScheme = "congo"
+
+# 默认的主题外观，可以是 light 或 dark。
+defaultAppearance = "light" # valid options: light or dark
+
+# 主题外观是否根据访问者的操作系统首选项自动切换。设置为 false 以始终使用 defaultAppearance。
+autoSwitchAppearance = true
+
+# 是否启用站内搜索。设置为 true 以启用搜索功能。请注意，搜索功能取决于 站点配置 中的 outputs.home 设置正确。
+enableSearch = true
+
+# 是否启用 <code> 块的复制到剪贴板按钮。highlight.noClasses 参数必须设置为 false，以使代码复制正常工作。
+enableCodeCopy = true
+
+# 是否将图像标记为浏览器的延迟加载。
+enableImageLazyLoading = true
+
+enableImageWebp = true
+
+# 指示机器人如何处理您的站点的字符串。如果设置，将在页面头部输出。有关有效值，请参阅Google 文档。
+# robots = ""
+
+# 指示在对assets进行指纹识别时使用的哈希算法。有效选项包括 md5、sha256、sha384 和 sha512。
+fingerprintAlgorithm = "sha256"
+
+[header]
+  # 页面头部和菜单的布局。有效值为 basic、hamburger、hybrid 或 custom。当设置为 custom 时，您必须通过创建 /layouts/partials/header/custom.html 文件提供自己的布局。
+  layout = "hybrid"
+  # 站点徽标文件在 assets/ 文件夹内的相对路径。徽标文件应以 2x 分辨率提供，并支持任何图像尺寸。
+  # logo = "img/logo.jpg"
+  # 与 header.logo 参数相同，但此图像在启用深色模式时使用。
+  # logoDark = "img/dark-logo.jpg"
+  # 是否在页眉中显示站点标题。
+  showTitle = true
+
+[footer]
+  # 是否在站点页脚显示版权字符串。请注意，可以使用语言配置中的 copyright 参数自定义字符串。
+  showCopyright = true
+  # 是否在站点页脚显示 “由…强力驱动” 的主题归属。如果选择禁用此消息，请考虑在站点的其他地方（例如关于页面）写上主题归属。
+  showThemeAttribution = true
+  # 是否在站点页脚显示外观切换器。使用浏览器的本地存储来保留访问者的首选项。
+  showAppearanceSwitcher = true
+  # 设置为 true 时，将显示返回顶部箭头。
+  showScrollToTop = true
+
+[homepage]
+  # 主页的布局。有效值为 page、profile 或 custom。当设置为 custom 时，您必须通过创建 /layouts/partials/home/custom.html 文件提供自己的布局。有关详细信息，请参阅主页布局部分。
+  layout = "profile"
+  # 是否在主页上显示最近的文章列表。
+  showRecent = true
+  # 当 homepage.showRecent 为 true 时，显示的最大最近文章数。
+  recentLimit = 5
+
+[article]
+  # 是否显示文章日期。
+  showDate = true
+  # 是否显示文章更新日期。
+  showDateUpdated = true
+  # 是否在文章页脚显示作者框。
+  showAuthor = true
+  # 是否在文章头部显示面包屑。
+  showBreadcrumbs = true
+  # 在使用 --buildDrafts 构建站点时，是否显示文章旁边的草稿标签。
+  showDraftLabel = true
+  # 是否显示编辑文章内容的链接。
+  showEdit = false
+  # 当 article.showEdit 激活时，编辑链接的 URL。
+  # editURL = "https://github.com/username/repo/"
+  # 当 article.showEdit 激活时，是否将当前文章的路径附加到设置为 article.editURL 的 URL。
+  editAppendPath = true
+  # 是否在文章内的标题旁边显示锚链接。
+  showHeadingAnchors = true
+  # 是否在文章页脚显示下一篇/上一篇文章的链接。
+  showPagination = true
+  # 是否翻转下一篇/上一篇文章链接的方向。
+  invertPagination = true
+  # 是否显示文章阅读时间。
+  showReadingTime = true
+  # 是否在文章上显示目录。
+  showTableOfContents = true
+  # 是否在与文章相关的分类法上显示。
+  showTaxonomies = true
+  # 是否显示文章字数。
+  showWordCount = true
+  # 是否在文章页脚之后包含comments partial。
+  showComments = true
+  # 要在每篇文章末尾显示的分享链接。如果未提供或设置为 false，则不会显示任何链接。
+  sharingLinks = ["x-twitter", "email", "telegram", "weibo"]
+  # sharingLinks = ["facebook", "x-twitter", "mastodon", "pinterest", "reddit", "linkedin", "email", "telegram", "line", "weibo"]
+
+[list]
+  # 是否在列表页面的页眉中显示面包屑。
+  showBreadcrumbs = true
+  # 是否在列表页面上显示文章摘要。如果在Front Matter中未提供摘要，则将使用站点配置中的 summaryLength 参数自动生成一个摘要。
+  showSummary = true
+  # 是否在列表页面上显示目录。
+  showTableOfContents = true
+  # 是否在列表页面上显示与此文章相关的分类法。
+  showTaxonomies = true
+  # 是否在列表页面上按年份对文章进行分组。
+  groupByYear = false
+  # 在需要截断页面列表时，输出当前页面两侧的分页链接数。宽度为 1 将在需要截断列表时输出当前页面两侧的一个链接。当前、第一个和最后一个页面的链接始终会显示，并且是在此值之外的链接。
+  paginationWidth = 1
+
+[sitemap]
+  # 应从生成的 /sitemap.xml 文件中排除的内容类型。有关可接受的值，请参阅Hugo 文档。
+  excludedKinds = ["taxonomy", "term"]
+
+[taxonomy]
+  # 是否在分类法列表上显示分类术语内文章的数量。
+  showTermCount = true
+
+[fathomAnalytics]
+  # 由 Fathom Analytics 为网站生成的站点代码。有关详细信息，请参阅分析文档。
+  # site = "ABC12345"
+  # 如果在 Fathom Analytics 中使用自定义域，请在此提供以从自定义域提供 script.js。
+  # domain= ""
+
+[plausibleAnalytics]
+  # 输入要跟踪的网站的域。有关详细信息，请参阅分析文档。
+  # domain = "blog.yoursite.com"
+  # 可寻址 Plausible api 事件的 URL。有关详细信息，请参阅分析文档。
+  # event = ""
+  # 可寻址 Plausible 分析脚本的 URL。有关详细信息，请参阅分析文档。
+  # script = ""
+
+[verification]
+  # 由 Google 提供的要包含在站点元数据中的站点验证字符串。
+  # google = ""
+  # 由 Bing 提供的要包含在站点元数据中的站点验证字符串。
+  # bing = ""
+  # 由 Pinterest 提供的要包含在站点元数据中的站点验证字符串。
+  # pinterest = ""
+  # 由 Yandex 提供的要包含在站点元数据中的站点验证字符串。
+  # yandex = ""

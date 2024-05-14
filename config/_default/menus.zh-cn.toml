@@ -1,0 +1,53 @@
+# Congo有两个菜单，可以根据您站点的内容和布局进行自定义。main菜单显示在站点页眉中，而footer菜单显示在页面底部，正好在版权声明上方。
+# 这两个菜单都在menus.en.toml文件中配置。与语言配置文件类似，如果您希望使用其他语言，请将此文件重命名并用所需的语言代码替换en。菜单链接将按weight从低到高排序，然后按name字母顺序排序。
+
+[[main]]
+  name = "简明COSBench教程"
+  url = 'https://sine-io.github.io/byte-of-cosbench/'
+  weight = 1
+  identifier = "byte-of-cosbench"
+  parent = ""
+  [main.params]
+    rel = 'external'
+    # 配置这个，会新窗口访问
+    target = "_blank"
+    # 选择icon
+    # icon = "github"
+    # 是否显示名字
+    # showName = true
+
+[[main]]
+  name = "简明Vdbench教程"
+  url = 'https://sine-io.github.io/byte-of-vdbench/'
+  weight = 1
+  identifier = "byte-of-vdbench"
+  parent = ""
+  [main.params]
+    rel = 'external'
+    target = "_blank"
+
+# [[main]]
+#  name = "标签"
+#  pageRef = "tags"
+#  weight = 30
+
+[[main]]
+  identifier = "搜索"
+  weight = 99
+  [main.params]
+    action = "search"
+
+[[main]]
+  identifier = "语言"
+  weight = 100
+  [main.params]
+    action = "locale"
+
+# -- Footer Menu --
+# The footer menu is displayed at the bottom of the page, just before
+# the copyright notice. Configure as per the main menu above.
+
+# [[footer]]
+#   name = "Tags"
+#   pageRef = "tags"
+#   weight = 10

@@ -1,0 +1,21 @@
+# -- Site Configuration --
+# https://jpanther.github.io/congo/docs/getting-started/
+
+# 网站根目录的 URL
+# baseURL = "https://sine-io.github.io/"
+
+# 主题组件和内容的默认语言
+defaultContentLanguage = "zh-cn"
+
+# 启用时，在站点根目录将创建一个 robots.txt 文件，允许搜索引擎爬取整个站点。如果你更喜欢提供自己制作的 robots.txt，请设置为 false 并将文件放置在 static 目录中。
+enableRobotsTXT = true
+
+# 在文章列表中每页列出的文章数
+paginate = 10
+
+# 在front matter中未提供摘要时，用于生成文章摘要的字数。值为 0 将使用第一句。当摘要被隐藏时，此值无效。
+summaryLength = 0
+
+# 生成站点的输出格式。Congo 需要 HTML、RSS 和 JSON 才能使所有主题组件正常工作。
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
