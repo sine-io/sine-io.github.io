@@ -30,7 +30,7 @@ title = "SineIO"
   # 作者的姓名。这将显示在文章页脚和使用配置文件布局时在主页上。
   name = "SineCelia"
   # 作者的图像文件路径。图像应为1:1的宽高比，并放置在站点的 assets/ 文件夹中。
-  image = "img/author.jpg"
+  image = "img/sweetie.png"
   # 包含作者头衔的 Markdown 字符串。它将显示在主页上作者姓名下方。
   headline = "天行健，君子以自强不息。"
   # 包含作者简介的 Markdown 字符串。它将显示在文章页脚中。
