@@ -3,7 +3,7 @@
 
 [[main]]
   name = "简明COSBench教程"
-  url = 'https://sine-io.github.io/byte-of-cosbench/'
+  url = 'byte-of-cosbench'
   weight = 1
   identifier = "byte-of-cosbench"
   parent = ""
@@ -18,7 +18,7 @@
 
 [[main]]
   name = "简明Vdbench教程"
-  url = 'https://sine-io.github.io/byte-of-vdbench/'
+  url = 'byte-of-vdbench'
   weight = 1
   identifier = "byte-of-vdbench"
   parent = ""
