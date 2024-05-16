@@ -2,7 +2,7 @@
 # https://jpanther.github.io/congo/docs/getting-started/
 
 # 网站根目录的 URL
-# baseURL = "https://sine-io.github.io/"
+baseURL = "https://sineio.top/"
 
 # 主题组件和内容的默认语言
 defaultContentLanguage = "zh-cn"
