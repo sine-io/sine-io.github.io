@@ -2,7 +2,15 @@
 
 Date: 2026-03-26
 Repository: `sine-io.github.io`
-Status: Approved in conversation, pending user review of written spec
+Status: Approved in conversation, later amended for external guide mode
+
+## Amendment
+
+On 2026-03-26, the migration decision changed for the COSBench and Vdbench tutorials:
+
+- They remain external guide sites in their own repositories
+- This repository links to them from the homepage and `Guides` index
+- This repository does not duplicate their full bodies or create local compatibility pages for them
 
 ## Summary
 
@@ -34,7 +42,7 @@ This makes migration feasible without a large content-conversion project.
 - Preserve existing homepage content and overall tone as much as possible
 - Keep content organized by stable sections instead of a generic blog stream
 - Prefer a clean content directory structure over a flat URL layout
-- Preserve legacy tutorial links through compatibility pages
+- Preserve tutorial discoverability through stable external guide links
 
 ## Non-Goals
 
@@ -104,17 +112,18 @@ Recommended source layout:
 ```text
 docs/
   index.md
-  about.md
+  about/
+    index.md
   guides/
     index.md
-    byte-of-cosbench.md
-    byte-of-vdbench.md
   notes/
     index.md
   opc/
     index.md
-    roadmap.md
-    glossary.md
+    roadmap/
+      index.md
+    glossary/
+      index.md
   updates/
     index.md
   public/
@@ -127,11 +136,11 @@ docs/
 Section intent:
 
 - `index.md`: homepage with retained introduction, photo, featured guides, OPC focus, and recent updates
-- `guides/`: long-form tutorial content
+- `guides/`: index of tutorial entry points, including external guide sites
 - `notes/`: short technical notes and fragments
 - `opc/`: structured OPC project knowledge, roadmap, terminology, and design records
 - `updates/`: progress logs, weekly notes, milestone updates
-- `about.md`: personal summary and external links
+- `about/index.md`: personal summary and external links
 
 ## Homepage Direction
 
@@ -149,31 +158,23 @@ The existing copy should be reused where possible and edited only as needed for 
 
 ## URL Strategy
 
-Primary rule: prefer a clean directory structure for canonical content locations.
+Primary rule: prefer a clean directory structure for site-owned content, and keep tutorial bodies in their dedicated repositories when they already exist as independent guide sites.
 
-Canonical tutorial paths:
+External tutorial destinations:
 
-- `/guides/byte-of-cosbench`
-- `/guides/byte-of-vdbench`
+- `https://sine-io.github.io/byte-of-cosbench/`
+- `https://sine-io.github.io/byte-of-vdbench/`
 
-Compatibility paths to preserve old links:
+Handling:
 
-- `/byte-of-cosbench`
-- `/byte-of-vdbench`
-
-Compatibility handling:
-
-- Keep a lightweight compatibility page at each legacy path
-- Each compatibility page should redirect visitors to the new canonical path
-- The canonical guide content should live only once, inside `guides/`
-
-This balances clean structure with backward compatibility.
+- Link to those sites from the homepage and `Guides` index
+- Do not duplicate their bodies in this repository unless there is a later decision to consolidate search, SEO, and navigation into one site
 
 ## Content Preservation Rules
 
 - Preserve the homepage greeting and overall tone
 - Preserve the homepage photo
-- Preserve the existing COSBench and Vdbench guide content
+- Preserve access to the existing COSBench and Vdbench guide content
 - Avoid aggressive rewriting during initial migration
 - Focus first on structural migration, then on later editorial refinement
 
@@ -207,12 +208,12 @@ Repository considerations:
 
 - Move homepage content into `docs/index.md`
 - Move image asset into `docs/public/`
-- Create `guides/`, `notes/`, `opc/`, `updates/`, and `about.md`
+- Create `guides/`, `notes/`, `opc/`, `updates/`, and `about/index.md`
 
 ### Phase 3: URL compatibility
 
-- Create compatibility pages for old tutorial paths
-- Ensure the new canonical paths are linked from navigation and index pages
+- Link the external tutorial sites from `Guides` and the homepage
+- Avoid local duplication of tutorial bodies while they remain independent documentation sites
 
 ### Phase 4: Visual refinement
 
@@ -226,8 +227,8 @@ The first migrated content should be:
 
 1. Homepage
 2. About page
-3. COSBench guide
-4. Vdbench guide
+3. External COSBench guide entry point
+4. External Vdbench guide entry point
 5. OPC section skeleton
 6. Notes and Updates section indexes
 
@@ -235,7 +236,7 @@ This order preserves current public value before expanding the site.
 
 ## Risks
 
-- Legacy links could break if compatibility pages are omitted or misconfigured
+- External tutorial links could drift if their published URLs change
 - VitePress content organization can drift if too many sections are introduced early
 - Recreating the homepage too aggressively could remove the personal tone that currently works
 
@@ -245,7 +246,7 @@ This order preserves current public value before expanding the site.
 - Knowledge-first site, personal branding secondary
 - Navigation: Home, Guides, Notes, OPC, Updates, About
 - Clean content directories preferred over flat paths
-- Preserve old tutorial links using compatibility pages
+- Keep COSBench and Vdbench as external guide sites
 - Preserve existing homepage content and image where practical
 - Deploy with GitHub Actions to GitHub Pages
 
