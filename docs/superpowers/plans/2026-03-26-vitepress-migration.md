@@ -159,7 +159,7 @@ jobs:
 - [ ] **Step 5: Verify the skeleton install works**
 
 Run: `npm run docs:build`
-Expected: FAIL because `docs/.vitepress/config.mts` does not exist yet
+Expected: PASS using VitePress default configuration because `docs/` exists, even though `docs/.vitepress/config.mts` has not been added yet
 
 - [ ] **Step 6: Commit the scaffold**
 
