@@ -21,9 +21,9 @@ hero:
 <div class="home-section">
   <div class="landing-note">
     工作中，我用到了 <code>COSBench</code> 和 <code>Vdbench</code> 这两款工具，分别测试对象存储、文件存储的性能。通过研究官方手册和源码，结合使用心得，我编写了
-    <a href="https://sine-io.github.io/byte-of-cosbench/" target="_blank" rel="noreferrer">简明 COSBench 教程</a>
+    <a href="https://sine-io.github.io/byte-of-cosbench/" target="_blank" rel="noopener noreferrer">简明 COSBench 教程</a>
     和
-    <a href="https://sine-io.github.io/byte-of-vdbench/" target="_blank" rel="noreferrer">简明 Vdbench 教程</a>，
+    <a href="https://sine-io.github.io/byte-of-vdbench/" target="_blank" rel="noopener noreferrer">简明 Vdbench 教程</a>，
     希望可以给其他使用者一些参考，少走一些弯路。
   </div>
 </div>
@@ -31,12 +31,12 @@ hero:
 ## 精选教程
 
 <div class="section-grid cols-2">
-  <a class="section-card" href="https://sine-io.github.io/byte-of-cosbench/" target="_blank" rel="noreferrer">
+  <a class="section-card" href="https://sine-io.github.io/byte-of-cosbench/" target="_blank" rel="noopener noreferrer">
     <h3>简明 COSBench 教程</h3>
     <p>外部教程站点，聚焦对象存储性能测试的部署、配置与结果理解。</p>
     <span class="section-meta">外部教程站点</span>
   </a>
-  <a class="section-card" href="https://sine-io.github.io/byte-of-vdbench/" target="_blank" rel="noreferrer">
+  <a class="section-card" href="https://sine-io.github.io/byte-of-vdbench/" target="_blank" rel="noopener noreferrer">
     <h3>简明 Vdbench 教程</h3>
     <p>外部教程站点，整理文件存储性能测试中常用参数、模型和排查路径。</p>
     <span class="section-meta">外部教程站点</span>
@@ -72,7 +72,7 @@ hero:
     <p>按阶段记录站点迁移进度、专题推进和内容补充情况。</p>
     <span class="section-meta">更新索引</span>
   </a>
-  <a class="section-card" href="https://github.com/sine-io" target="_blank" rel="noreferrer">
+  <a class="section-card" href="https://github.com/sine-io" target="_blank" rel="noopener noreferrer">
     <h3>GitHub 与动态</h3>
     <p>代码仓库在 GitHub，更多日常动态和碎片想法会同步到 X。</p>
     <span class="section-meta">外部链接</span>

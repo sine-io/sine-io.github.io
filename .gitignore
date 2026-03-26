@@ -1,6 +1,4 @@
-public
-!docs/public/
-!docs/public/**
+/public/
 .worktrees/
 node_modules/
 docs/.vitepress/cache/
