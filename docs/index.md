@@ -47,7 +47,7 @@ hero:
     <p>集中放置项目背景、关键概念和面向后续内容的导航。</p>
     <span class="section-meta">总览已就位</span>
   </a>
-  <a class="section-card" href="/opc/roadmap">
+  <a class="section-card" href="/opc/roadmap/">
     <h3>路线图与术语</h3>
     <p>把计划中的能力拆开，明确术语范围，减少后续内容跳读成本。</p>
     <span class="section-meta">查看规划</span>
