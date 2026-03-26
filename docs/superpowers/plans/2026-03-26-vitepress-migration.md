@@ -37,6 +37,8 @@
 
 ### Files to remove after VitePress build passes
 
+- `.github/workflows/hugo.yaml`
+- `.hugo_build.lock`
 - `archetypes/default.md`
 - `assets/img/index.jpg`
 - `config/_default/config.toml`
@@ -44,6 +46,7 @@
 - `config/_default/markup.toml`
 - `config/_default/menus.zh-cn.toml`
 - `config/_default/module.toml`
+- `config/_default/params.toml`
 - `content/_index.md`
 - `content/serein.jpg`
 - `go.mod`
@@ -494,6 +497,8 @@ git commit -m "feat: link external guide sites"
 ### Task 6: Remove Hugo-specific files and verify the replacement end to end
 
 **Files:**
+- Delete: `.github/workflows/hugo.yaml`
+- Delete: `.hugo_build.lock`
 - Delete: `archetypes/default.md`
 - Delete: `assets/img/index.jpg`
 - Delete: `config/_default/config.toml`
@@ -501,6 +506,7 @@ git commit -m "feat: link external guide sites"
 - Delete: `config/_default/markup.toml`
 - Delete: `config/_default/menus.zh-cn.toml`
 - Delete: `config/_default/module.toml`
+- Delete: `config/_default/params.toml`
 - Delete: `content/_index.md`
 - Delete: `content/serein.jpg`
 - Delete: `go.mod`
