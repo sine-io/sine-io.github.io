@@ -2,9 +2,9 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Replace the Hugo site with a VitePress site on GitHub Pages while preserving the existing homepage tone, image, and public guide URLs through compatibility pages.
+**Goal:** Replace the Hugo site with a VitePress site on GitHub Pages while preserving the existing homepage tone, image, and external guide entry points.
 
-**Architecture:** The site will move to a `docs/`-based VitePress structure with a lightweight custom theme layer for homepage styling and navigation. GitHub Actions will build `docs/.vitepress/dist` and deploy it to GitHub Pages, while legacy guide URLs will remain as redirect pages that point to the canonical `guides/` routes.
+**Architecture:** The site will move to a `docs/`-based VitePress structure with a lightweight custom theme layer for homepage styling and navigation. GitHub Actions will build `docs/.vitepress/dist` and deploy it to GitHub Pages, while the COSBench and Vdbench tutorials remain in their dedicated external repositories and are linked from this site as external guides.
 
 **Tech Stack:** Node.js 22, npm, VitePress 1.6.4, GitHub Actions, GitHub Pages
 
@@ -20,15 +20,11 @@
 - `docs/index.md`
 - `docs/about/index.md`
 - `docs/guides/index.md`
-- `docs/guides/byte-of-cosbench.md`
-- `docs/guides/byte-of-vdbench.md`
 - `docs/notes/index.md`
 - `docs/opc/index.md`
 - `docs/opc/roadmap/index.md`
 - `docs/opc/glossary/index.md`
 - `docs/updates/index.md`
-- `docs/byte-of-cosbench.md`
-- `docs/byte-of-vdbench.md`
 - `docs/public/serein.jpg`
 - `docs/public/CNAME`
 - `docs/.vitepress/config.mts`
@@ -55,9 +51,16 @@
 - `hugo.toml`
 - `resources/_gen/`
 
-### Existing content dependency
+### External guide dependency
 
-The repository currently does **not** contain the source body for `byte-of-cosbench` or `byte-of-vdbench`. Execution must pause at Task 3 if those guide sources cannot be recovered from local files, git history, or user-provided exports.
+The COSBench and Vdbench tutorials live in dedicated external repositories and published documentation sites:
+
+- `https://github.com/sine-io/byte-of-cosbench`
+- `https://github.com/sine-io/byte-of-vdbench`
+- `https://sine-io.github.io/byte-of-cosbench/`
+- `https://sine-io.github.io/byte-of-vdbench/`
+
+This repository should link to those external guides rather than duplicating or importing their full bodies.
 
 ---
 
@@ -332,14 +335,14 @@ git commit -m "feat: create VitePress site shell"
 
 ---
 
-### Task 3: Recover or import the existing guide sources before canonical migration
+### Task 3: Confirm external guide mode and published URLs
 
 **Files:**
 - Inspect: repository working tree and git history
-- Potential Create/Modify: `docs/guides/byte-of-cosbench.md`, `docs/guides/byte-of-vdbench.md`
-- Test: source discovery commands and a successful `npm run docs:build`
+- Modify: `docs/superpowers/plans/2026-03-26-vitepress-migration.md`
+- Test: source discovery commands and validation of external tutorial URLs
 
-- [ ] **Step 1: Search the repository for existing guide source**
+- [ ] **Step 1: Search the repository for local guide source**
 
 Run:
 
@@ -349,43 +352,34 @@ find . -maxdepth 4 \( -path '*/public*' -o -path '*/byte-of-cosbench*' -o -path 
 git log --all --stat -- '*byte-of-cosbench*' '*byte-of-vdbench*'
 ```
 
-Expected: either source files are found, or the search confirms the guides are absent from the repository history available locally.
+Expected: search confirms the guide bodies are absent from this repository history.
 
-- [ ] **Step 2: Stop if the guide source is still unavailable**
+- [ ] **Step 2: Confirm the external-guide decision with the user**
 
-If Step 1 does not produce guide source bodies:
+If Step 1 confirms the source bodies are absent:
 
 - do **not** invent or paraphrase the missing guide content
-- ask the user for exported Markdown/HTML/plaintext source for both guides
-- do **not** continue to Tasks 4-6 until the source is available or the user explicitly approves shipping placeholder guides
+- confirm whether the guides should remain external
+- if the user confirms external-guide mode, proceed without importing guide bodies
 
-- [ ] **Step 3: Normalize recovered guide content into canonical Markdown files**
+- [ ] **Step 3: Record the external guide URLs in the plan and implementation context**
 
-Once source is available, create:
+Record these as the canonical guide destinations for this site:
 
-- `docs/guides/byte-of-cosbench.md`
-- `docs/guides/byte-of-vdbench.md`
+- `https://sine-io.github.io/byte-of-cosbench/`
+- `https://sine-io.github.io/byte-of-vdbench/`
 
-Each file should include:
+- `docs/guides/index.md` and `docs/index.md` should link to those external URLs
+- this repository should not create local duplicates or redirect pages for those guides
+- the existing project-page URLs should remain owned by their dedicated repositories
 
-- a title
-- a short description
-- cleaned headings
-- normalized Markdown links
-- no Hugo shortcode dependencies
-
-- [ ] **Step 4: Build after importing guide content**
-
-Run: `npm run docs:build`
-Expected: PASS with both guides included in the output
-
-- [ ] **Step 5: Commit the recovered guides**
+- [ ] **Step 4: Commit the plan adjustment if needed**
 
 Run:
 
 ```bash
-git add docs/guides/byte-of-cosbench.md docs/guides/byte-of-vdbench.md
-git commit -m "feat: import guide content into VitePress"
+git add docs/superpowers/plans/2026-03-26-vitepress-migration.md
+git commit -m "docs: record external guide mode"
 ```
 
 ---
@@ -396,7 +390,7 @@ git commit -m "feat: import guide content into VitePress"
 - Create: `docs/public/serein.jpg`
 - Create: `docs/public/CNAME`
 - Modify: `docs/index.md`
-- Modify: `docs/about.md`
+- Modify: `docs/about/index.md`
 - Modify: `docs/.vitepress/config.mts`
 - Test: `npm run docs:build`
 
@@ -451,71 +445,48 @@ Expected: PASS and output includes:
 Run:
 
 ```bash
-git add docs/index.md docs/about.md docs/public/serein.jpg docs/public/CNAME docs/.vitepress/config.mts
+git add docs/index.md docs/about docs/public/serein.jpg docs/public/CNAME docs/.vitepress/config.mts
 git commit -m "feat: migrate homepage and site metadata"
 ```
 
 ---
 
-### Task 5: Add legacy URL compatibility pages and guide indexes
+### Task 5: Link external tutorial sites from the homepage and guide index
 
 **Files:**
 - Modify: `docs/guides/index.md`
-- Create: `docs/byte-of-cosbench.md`
-- Create: `docs/byte-of-vdbench.md`
+- Modify: `docs/index.md`
 - Test: `npm run docs:build`
 
 - [ ] **Step 1: Finish the Guides index**
 
 Update `docs/guides/index.md` to link to:
 
-- `/guides/byte-of-cosbench`
-- `/guides/byte-of-vdbench`
+- `https://sine-io.github.io/byte-of-cosbench/`
+- `https://sine-io.github.io/byte-of-vdbench/`
 
-Use short descriptions for each guide rather than a bare link list.
+Use short descriptions for each guide rather than a bare link list, and clearly mark them as external tutorial sites.
 
-- [ ] **Step 2: Create legacy compatibility page for COSBench**
+- [ ] **Step 2: Update homepage featured-guide links**
 
-Create `docs/byte-of-cosbench.md` with this pattern:
+Update `docs/index.md` so the featured-guide section links directly to the external tutorial sites rather than placeholder internal routes.
 
-```md
----
-title: 页面已迁移
-head:
-  - - meta
-    - http-equiv: refresh
-      content: 0; url=/guides/byte-of-cosbench/
-  - - link
-    - rel: canonical
-      href: https://sineio.top/guides/byte-of-cosbench/
----
-
-# 页面已迁移
-
-新版地址：[/guides/byte-of-cosbench/](/guides/byte-of-cosbench/)
-```
-
-- [ ] **Step 3: Create legacy compatibility page for Vdbench**
-
-Create `docs/byte-of-vdbench.md` using the same pattern, pointing to `/guides/byte-of-vdbench/`.
-
-- [ ] **Step 4: Verify compatibility routes build**
+- [ ] **Step 3: Verify external-guide links build cleanly**
 
 Run: `npm run docs:build`
 Expected: PASS and output includes:
 
-- `byte-of-cosbench/index.html`
-- `byte-of-vdbench/index.html`
-- `guides/byte-of-cosbench/index.html`
-- `guides/byte-of-vdbench/index.html`
+- `guides/index.html`
+- homepage and guide index pages with outbound links to the external tutorial URLs
+- no locally generated `guides/byte-of-cosbench` or `guides/byte-of-vdbench` pages
 
-- [ ] **Step 5: Commit the compatibility pages**
+- [ ] **Step 4: Commit the external guide links**
 
 Run:
 
 ```bash
-git add docs/guides/index.md docs/byte-of-cosbench.md docs/byte-of-vdbench.md
-git commit -m "feat: preserve legacy guide URLs"
+git add docs/guides/index.md docs/index.md
+git commit -m "feat: link external guide sites"
 ```
 
 ---
@@ -569,7 +540,6 @@ Expected: output includes:
 
 - top-level homepage
 - guides, notes, opc, updates, about sections
-- legacy compatibility pages
 - `assets/`
 - `CNAME`
 - `serein.jpg`
@@ -591,14 +561,14 @@ git commit -m "refactor: replace Hugo site with VitePress"
 - `npm run docs:build`
 - Inspect `docs/.vitepress/dist`
 - Verify `docs/.vitepress/dist/CNAME` exists
-- Verify `docs/.vitepress/dist/byte-of-cosbench/index.html` exists
-- Verify `docs/.vitepress/dist/guides/byte-of-cosbench/index.html` exists
-- Verify `docs/.vitepress/dist/byte-of-vdbench/index.html` exists
-- Verify `docs/.vitepress/dist/guides/byte-of-vdbench/index.html` exists
+- Verify `docs/.vitepress/dist/guides/index.html` exists
+- Verify `docs/.vitepress/dist/about/index.html` exists
+- Verify `docs/.vitepress/dist/opc/roadmap/index.html` exists
+- Verify `docs/.vitepress/dist/opc/glossary/index.html` exists
+- Verify `docs/.vitepress/dist/serein.jpg` exists
 
 ## Execution Notes
 
-- Execute Tasks 1 and 2 first; they are independent of guide source recovery
-- Task 3 is the hard gate for the canonical guide content
+- Execute Tasks 1 and 2 first; they are independent of the external guide links
+- Task 3 records the external-guide decision and URLs
 - Do not delete Hugo files until Tasks 1-5 have passed build verification
-- If the guide source remains unavailable, stop after Task 2 and ask the user how they want to proceed
