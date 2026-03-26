@@ -179,12 +179,12 @@ git commit -m "chore: scaffold VitePress toolchain"
 - Create: `docs/.vitepress/theme/index.ts`
 - Create: `docs/.vitepress/theme/custom.css`
 - Create: `docs/index.md`
-- Create: `docs/about.md`
+- Create: `docs/about/index.md`
 - Create: `docs/guides/index.md`
 - Create: `docs/notes/index.md`
 - Create: `docs/opc/index.md`
-- Create: `docs/opc/roadmap.md`
-- Create: `docs/opc/glossary.md`
+- Create: `docs/opc/roadmap/index.md`
+- Create: `docs/opc/glossary/index.md`
 - Create: `docs/updates/index.md`
 - Test: `npm run docs:build`
 
@@ -245,6 +245,8 @@ export default defineConfig({
 })
 ```
 
+Use GitHub Pages-safe directory routes for non-root landing pages so links like `/about/`, `/opc/roadmap/`, and `/opc/glossary/` resolve on a plain static host.
+
 - [ ] **Step 2: Add a minimal theme entry**
 
 Create `docs/.vitepress/theme/index.ts` as:
@@ -273,10 +275,10 @@ Create these files with short, useful intros and placeholder indexes:
 - `docs/guides/index.md`
 - `docs/notes/index.md`
 - `docs/opc/index.md`
-- `docs/opc/roadmap.md`
-- `docs/opc/glossary.md`
+- `docs/opc/roadmap/index.md`
+- `docs/opc/glossary/index.md`
 - `docs/updates/index.md`
-- `docs/about.md`
+- `docs/about/index.md`
 
 Each page should have:
 
@@ -324,7 +326,7 @@ Expected: PASS with generated files under `docs/.vitepress/dist`
 Run:
 
 ```bash
-git add docs/.vitepress docs/index.md docs/about.md docs/guides docs/notes docs/opc docs/updates
+git add docs/.vitepress docs/index.md docs/about docs/guides docs/notes docs/opc docs/updates
 git commit -m "feat: create VitePress site shell"
 ```
 
