@@ -18,14 +18,14 @@
 - `package.json`
 - `package-lock.json`
 - `docs/index.md`
-- `docs/about.md`
+- `docs/about/index.md`
 - `docs/guides/index.md`
 - `docs/guides/byte-of-cosbench.md`
 - `docs/guides/byte-of-vdbench.md`
 - `docs/notes/index.md`
 - `docs/opc/index.md`
-- `docs/opc/roadmap.md`
-- `docs/opc/glossary.md`
+- `docs/opc/roadmap/index.md`
+- `docs/opc/glossary/index.md`
 - `docs/updates/index.md`
 - `docs/byte-of-cosbench.md`
 - `docs/byte-of-vdbench.md`
@@ -225,8 +225,8 @@ export default defineConfig({
           text: 'OPC',
           items: [
             { text: '总览', link: '/opc/' },
-            { text: '路线图', link: '/opc/roadmap' },
-            { text: '术语表', link: '/opc/glossary' }
+            { text: '路线图', link: '/opc/roadmap/' },
+            { text: '术语表', link: '/opc/glossary/' }
           ]
         }
       ],
@@ -239,7 +239,7 @@ export default defineConfig({
     },
     socialLinks: [
       { icon: 'github', link: 'https://github.com/sine-io' },
-      { icon: 'x', link: 'https://twitter.com/SineCelia' }
+      { icon: 'x', link: 'https://x.com/SineCelia' }
     ]
   }
 })
