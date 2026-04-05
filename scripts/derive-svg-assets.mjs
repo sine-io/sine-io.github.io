@@ -15,14 +15,18 @@ const derivatives = [
     output: 'src/assets/visuals/svg1-optimized.svg',
     crop: { x: 900, y: 0, width: 980, height: 860 },
     targetStrokeCount: 160,
-    targetFillCount: 240
+    targetFillCount: 240,
+    minSelectedElements: 280,
+    maxOutputBytes: 200_000
   },
   {
     input: 'SVG2.svg',
     output: 'src/assets/visuals/svg2-optimized.svg',
     crop: { x: 900, y: 0, width: 980, height: 760 },
     targetStrokeCount: 150,
-    targetFillCount: 210
+    targetFillCount: 210,
+    minSelectedElements: 260,
+    maxOutputBytes: 200_000
   }
 ]
 
@@ -35,9 +39,22 @@ function cleanElement(element) {
 }
 
 function getElementPosition(element) {
-  const translateMatch = element.match(/transform="[^"]*translate\(([-\d.]+),\s*([-\d.]+)/)
+  const translateMatch = element.match(/transform="[^"]*translate\(([-\d.]+)[,\s]+([-\d.]+)/)
   if (translateMatch) {
     return [Number(translateMatch[1]), Number(translateMatch[2])]
+  }
+
+  const matrixMatch = element.match(/transform="[^"]*matrix\(([^)]+)\)/)
+  if (matrixMatch) {
+    const matrixValues = matrixMatch[1]
+      .split(/[,\s]+/)
+      .map((value) => value.trim())
+      .filter(Boolean)
+      .map(Number)
+
+    if (matrixValues.length === 6 && matrixValues.every((value) => Number.isFinite(value))) {
+      return [matrixValues[4], matrixValues[5]]
+    }
   }
 
   const moveMatch = element.match(/\bd="\s*[Mm]\s*([-\d.]+)\s+([-\d.]+)/)
@@ -53,6 +70,23 @@ function getElementPosition(element) {
   const cornerMatch = element.match(/\bx="([-\d.]+)"[^>]*\by="([-\d.]+)"/)
   if (cornerMatch) {
     return [Number(cornerMatch[1]), Number(cornerMatch[2])]
+  }
+
+  const lineMatch = element.match(/\bx1="([-\d.]+)"[^>]*\by1="([-\d.]+)"/)
+  if (lineMatch) {
+    return [Number(lineMatch[1]), Number(lineMatch[2])]
+  }
+
+  const pointsMatch = element.match(/\bpoints="([^"]+)"/)
+  if (pointsMatch) {
+    const pointValues = pointsMatch[1]
+      .trim()
+      .split(/[\s,]+/)
+      .map(Number)
+
+    if (pointValues.length >= 2 && Number.isFinite(pointValues[0]) && Number.isFinite(pointValues[1])) {
+      return [pointValues[0], pointValues[1]]
+    }
   }
 
   return null
@@ -119,14 +153,23 @@ async function writeDerivative(derivative) {
   const sourceSvg = await readFile(inputPath, 'utf8')
   const selectedElements = selectElements(sourceSvg, derivative)
 
-  if (selectedElements.length === 0) {
-    throw new Error(`No drawable elements selected for ${derivative.input}`)
+  if (selectedElements.length < derivative.minSelectedElements) {
+    throw new Error(
+      `${derivative.input} selected only ${selectedElements.length} elements; minimum is ${derivative.minSelectedElements}`
+    )
   }
 
   const optimized = optimize(buildDerivativeSvg(selectedElements, derivative.crop), {
     ...svgoConfig,
     path: outputPath
   })
+
+  const outputBytes = Buffer.byteLength(optimized.data)
+  if (outputBytes > derivative.maxOutputBytes) {
+    throw new Error(
+      `${derivative.output} is ${outputBytes} bytes; maximum allowed is ${derivative.maxOutputBytes}`
+    )
+  }
 
   await mkdir(path.dirname(outputPath), { recursive: true })
   await writeFile(outputPath, optimized.data)

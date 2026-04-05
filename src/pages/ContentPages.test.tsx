@@ -49,7 +49,8 @@ describe('content pages', () => {
 
   it('groups writing entries from guides, notes, and updates', () => {
     renderWithRouter('/writing')
-    expect(screen.getByTestId('writing-art')).toBeInTheDocument()
+    expect(screen.getByTestId('writing-art')).toHaveAttribute('alt', '')
+    expect(screen.getByTestId('writing-art')).toHaveAttribute('aria-hidden', 'true')
     expect(screen.getByText('简明 COSBench 教程')).toBeInTheDocument()
     expect(screen.getByText('参数速查')).toBeInTheDocument()
     expect(screen.getByText('VitePress 迁移进度')).toBeInTheDocument()
