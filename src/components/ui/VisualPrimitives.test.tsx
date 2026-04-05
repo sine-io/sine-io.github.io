@@ -36,8 +36,17 @@ describe('GlassPanel', () => {
     )
 
     expect(screen.getByText('default panel')).toHaveClass('border-white/10')
+    expect(screen.getByText('default panel')).toHaveClass(
+      'bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(8,17,40,0.58))]'
+    )
     expect(screen.getByText('hero panel')).toHaveClass('border-[#A6DEFC]/20')
+    expect(screen.getByText('hero panel')).toHaveClass(
+      'shadow-[0_0_0_1px_rgba(166,222,252,0.08),0_28px_100px_rgba(0,0,0,0.4),0_0_48px_rgba(93,227,233,0.08),inset_0_1px_0_rgba(255,255,255,0.1)]'
+    )
     expect(screen.getByText('dense panel')).toHaveClass('border-white/8')
+    expect(screen.getByText('dense panel')).toHaveClass(
+      'bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(8,17,40,0.72))]'
+    )
   })
 })
 
@@ -57,6 +66,8 @@ describe('SectionHeading', () => {
 
     expect(screen.getByText('Default')).toHaveClass('text-[#75B3E1]')
     expect(screen.getByText('Hero')).toHaveClass('text-[#A6DEFC]')
+    expect(screen.getByRole('heading', { name: 'Default title', level: 2 })).toHaveClass('text-white')
+    expect(screen.getByRole('heading', { name: 'Hero title', level: 2 })).toHaveClass('text-[#F4FAFF]')
     expect(screen.getByText('Default description')).toHaveClass('text-[#A6B4CD]')
     expect(screen.getByText('Hero description')).toHaveClass('text-[#D7E3F4]')
   })
