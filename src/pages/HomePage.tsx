@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import heroArt from '@/assets/visuals/svg1-optimized.svg'
 import { Container } from '@/components/ui/Container'
 import { GlassPanel } from '@/components/ui/GlassPanel'
 import { SectionHeading } from '@/components/ui/SectionHeading'
@@ -21,10 +22,21 @@ export function HomePage() {
       <div className="space-y-16 py-16 md:space-y-24 md:py-24">
         <section className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(320px,0.8fr)]">
           <GlassPanel>
-            <h2 className="text-xs uppercase tracking-[0.35em] text-[#75B3E1]">{homeContent.eyebrow}</h2>
-            <div className="mt-4 text-sm text-[#A6B4CD]">{siteMeta.name}</div>
-            <h1 className="mt-4 max-w-3xl text-4xl font-semibold text-white md:text-6xl">{homeContent.title}</h1>
-            <p className="mt-6 max-w-2xl text-lg text-[#D7E3F4]">{homeContent.intro}</p>
+            <div className="relative isolate overflow-hidden">
+              <img
+                data-testid="hero-art"
+                src={heroArt}
+                alt=""
+                aria-hidden="true"
+                className="pointer-events-none absolute inset-y-0 right-0 h-full max-w-[42rem] object-contain opacity-70"
+              />
+              <div className="relative z-10 min-h-[18rem] pr-8 sm:pr-32 lg:pr-40">
+                <h2 className="text-xs uppercase tracking-[0.35em] text-[#75B3E1]">{homeContent.eyebrow}</h2>
+                <div className="mt-4 text-sm text-[#A6B4CD]">{siteMeta.name}</div>
+                <h1 className="mt-4 max-w-3xl text-4xl font-semibold text-white md:text-6xl">{homeContent.title}</h1>
+                <p className="mt-6 max-w-2xl text-lg text-[#D7E3F4]">{homeContent.intro}</p>
+              </div>
+            </div>
           </GlassPanel>
           <GlassPanel>
             <div className="space-y-4">

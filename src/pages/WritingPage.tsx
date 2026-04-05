@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
+import sectionArt from '@/assets/visuals/svg2-optimized.svg'
 import { Container } from '@/components/ui/Container'
 import { GlassPanel } from '@/components/ui/GlassPanel'
 import { SectionHeading } from '@/components/ui/SectionHeading'
@@ -27,13 +28,21 @@ export function WritingPage() {
 
   return (
     <Container>
-      <div className="space-y-12 py-16 md:space-y-16 md:py-24">
-        <SectionHeading
-          eyebrow="Writing"
-          title="Writing"
-          description="把教程、短笔记和阶段更新按类型聚合到同一处，方便集中浏览。"
-          level={1}
+      <div className="relative isolate space-y-12 overflow-hidden py-16 md:space-y-16 md:py-24">
+        <img
+          src={sectionArt}
+          alt=""
+          aria-hidden="true"
+          className="pointer-events-none absolute right-[-8rem] top-0 h-48 max-w-none object-contain opacity-35 md:right-[-2rem]"
         />
+        <div className="relative z-10">
+          <SectionHeading
+            eyebrow="Writing"
+            title="Writing"
+            description="把教程、短笔记和阶段更新按类型聚合到同一处，方便集中浏览。"
+            level={1}
+          />
+        </div>
         {writingCategoryOrder.map((category) => {
           const entries = writingEntries.filter((entry) => entry.category === category)
           const meta = writingCategoryMeta[category]

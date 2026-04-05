@@ -16,5 +16,6 @@ describe('HomePage', () => {
     expect(screen.getByRole('link', { name: /实验与短笔记/i })).toHaveAttribute('href', '/writing#notes')
     expect(screen.getByRole('link', { name: /最近更新/i })).toHaveAttribute('href', '/writing#updates')
     expect(screen.getByText('照片由 SineCelia 拍摄于成研所。')).toBeInTheDocument()
+    expect(screen.getByTestId('hero-art')).toBeInTheDocument()
   })
 })
