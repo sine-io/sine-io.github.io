@@ -64,4 +64,31 @@ describe('Layout', () => {
 
     expect(secondShell).not.toBe(firstShell)
   })
+
+  it('does not remount the page shell for hash-only navigation on the same pathname', async () => {
+    const router = createMemoryRouter(
+      [
+        {
+          path: '/',
+          element: <Layout />,
+          children: [{ path: 'writing', element: <p>writing route</p> }]
+        }
+      ],
+      { initialEntries: ['/writing'] }
+    )
+
+    const { container } = render(<RouterProvider router={router} />)
+
+    expect(screen.getByText('writing route')).toBeInTheDocument()
+    const firstShell = container.querySelector('main > div')
+
+    await act(async () => {
+      await router.navigate('/writing#notes')
+    })
+
+    expect(screen.getByText('writing route')).toBeInTheDocument()
+    const secondShell = container.querySelector('main > div')
+
+    expect(secondShell).toBe(firstShell)
+  })
 })

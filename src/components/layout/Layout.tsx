@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react'
-import { motion } from 'framer-motion'
+import { MotionConfig, motion } from 'framer-motion'
 import { Outlet, useLocation } from 'react-router-dom'
 import { pageShellMotion } from '@/lib/motion'
 import { Navbar } from './Navbar'
@@ -13,9 +13,11 @@ export function Layout({ children }: PropsWithChildren) {
       <SineWaveBg />
       <Navbar />
       <main>
-        <motion.div key={`${location.pathname}:${location.key}`} {...pageShellMotion}>
-          {children ?? <Outlet />}
-        </motion.div>
+        <MotionConfig reducedMotion="user">
+          <motion.div key={location.pathname} {...pageShellMotion}>
+            {children ?? <Outlet />}
+          </motion.div>
+        </MotionConfig>
       </main>
     </div>
   )
