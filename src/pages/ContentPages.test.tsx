@@ -22,6 +22,7 @@ describe('content pages', () => {
   it('lists OPC on the projects page', () => {
     renderWithRouter('/projects')
     expect(screen.getByText('OPC')).toBeInTheDocument()
+    expect(screen.getByTestId('projects-constellation')).toBeInTheDocument()
     expect(screen.getByTestId('projects-art')).toHaveAttribute('alt', '')
     expect(screen.getByTestId('projects-art')).toHaveAttribute('aria-hidden', 'true')
   })

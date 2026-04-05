@@ -13,8 +13,25 @@ html {
 
 body {
   min-height: 100vh;
-  background: #0A1128;
+  background:
+    radial-gradient(circle at 18% 14%, rgba(79, 151, 220, 0.12), transparent 24%),
+    radial-gradient(circle at 76% 18%, rgba(111, 102, 223, 0.13), transparent 20%),
+    radial-gradient(circle at 55% 78%, rgba(83, 207, 233, 0.08), transparent 24%),
+    #0A1128;
   color: #A6B4CD;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 8% 16%, rgba(255,255,255,0.35) 0 1px, transparent 2px),
+    radial-gradient(circle at 22% 44%, rgba(166, 222, 252, 0.28) 0 1px, transparent 2px),
+    radial-gradient(circle at 78% 30%, rgba(255,255,255,0.28) 0 1px, transparent 2px),
+    radial-gradient(circle at 64% 72%, rgba(93, 227, 233, 0.22) 0 1px, transparent 2px);
+  opacity: 0.35;
 }
 
 #root {

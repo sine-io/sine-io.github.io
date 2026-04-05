@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import heroArt from '@/assets/visuals/svg1-optimized.svg'
+import { ConstellationField } from '@/components/ui/ConstellationField'
 import { Container } from '@/components/ui/Container'
 import { GlassPanel } from '@/components/ui/GlassPanel'
 import { SectionHeading } from '@/components/ui/SectionHeading'
@@ -15,6 +16,20 @@ function pickItemsBySlug<T extends { slug: string }>(items: T[], slugs: string[]
     .filter((item): item is T => item !== undefined)
 }
 
+const homeConstellationNodes = [
+  { cx: 12, cy: 20, r: 1.4 },
+  { cx: 24, cy: 34, r: 1.1 },
+  { cx: 42, cy: 18, r: 1.5 },
+  { cx: 56, cy: 28, r: 1.2 },
+  { cx: 71, cy: 16, r: 1.1 },
+  { cx: 84, cy: 32, r: 1.3 }
+]
+
+const homeConstellationPaths = [
+  { d: 'M12 20L24 34L42 18L56 28' },
+  { d: 'M42 18L71 16L84 32' }
+]
+
 export function HomePage() {
   const featuredProjects = pickItemsBySlug(projects, homeContent.featuredProjectSlugs)
   const featuredWriting = pickItemsBySlug(writingEntries, homeContent.featuredWritingSlugs)
@@ -26,8 +41,14 @@ export function HomePage() {
           {...sectionRevealMotion}
           className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(320px,0.8fr)]"
         >
-          <GlassPanel>
+          <GlassPanel variant="hero">
             <div className="relative isolate overflow-hidden">
+              <ConstellationField
+                testId="home-constellation"
+                nodes={homeConstellationNodes}
+                paths={homeConstellationPaths}
+                className="pointer-events-none absolute inset-x-[8%] top-[10%] h-[58%] w-[72%] opacity-70"
+              />
               <img
                 data-testid="hero-art"
                 src={heroArt}
@@ -43,7 +64,7 @@ export function HomePage() {
               </div>
             </div>
           </GlassPanel>
-          <GlassPanel>
+          <GlassPanel variant="dense">
             <div className="space-y-4">
               <p className="text-xs uppercase tracking-[0.35em] text-[#75B3E1]">Overview</p>
               {homeContent.overview.map((paragraph) => (
@@ -63,7 +84,7 @@ export function HomePage() {
           />
           <div className="grid gap-6 md:grid-cols-2">
             {featuredProjects.map((project) => (
-              <GlassPanel key={project.slug}>
+              <GlassPanel key={project.slug} variant="dense">
                 <div className="space-y-4">
                   <div className="flex flex-wrap gap-2">
                     {project.tags.map((tag) => (
@@ -91,7 +112,7 @@ export function HomePage() {
           />
           <div className="grid gap-6 md:grid-cols-2">
             {featuredWriting.map((entry) => (
-              <GlassPanel key={entry.slug}>
+              <GlassPanel key={entry.slug} variant="dense">
                 <div className="space-y-4">
                   <p className="text-xs uppercase tracking-[0.25em] text-[#75B3E1]">{entry.category}</p>
                   <h3 className="text-2xl font-semibold text-white">{entry.title}</h3>

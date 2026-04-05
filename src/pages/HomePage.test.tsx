@@ -18,5 +18,6 @@ describe('HomePage', () => {
     expect(screen.getByText('照片由 SineCelia 拍摄于成研所。')).toBeInTheDocument()
     expect(screen.getByTestId('hero-art')).toHaveAttribute('alt', '')
     expect(screen.getByTestId('hero-art')).toHaveAttribute('aria-hidden', 'true')
+    expect(screen.getByTestId('home-constellation')).toBeInTheDocument()
   })
 })
