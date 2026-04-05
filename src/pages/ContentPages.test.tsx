@@ -44,6 +44,9 @@ describe('content pages', () => {
 
   it('renders migrated OPC detail content from overview, roadmap, and glossary', () => {
     renderWithRouter('/projects/opc')
+    expect(screen.getByRole('heading', { name: 'OPC', level: 1 })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'OPC 术语表', level: 2 })).toBeInTheDocument()
+    expect(screen.getByTestId('project-detail-frame')).toBeInTheDocument()
     expect(screen.getByText('当前内容：OPC 总览导航。')).toBeInTheDocument()
     expect(screen.getByText('这页用来跟踪 OPC 方向上的阶段目标，把要做的事拆开，避免概念和计划混在一起。')).toBeInTheDocument()
     expect(screen.getByText('计划术语：核心对象与角色。')).toBeInTheDocument()
@@ -65,19 +68,22 @@ describe('content pages', () => {
 
   it('renders migrated internal writing detail content', () => {
     renderWithRouter('/writing/vitepress-migration-progress')
-    expect(screen.getByRole('heading', { name: 'VitePress 迁移进度' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'VitePress 迁移进度', level: 1 })).toBeInTheDocument()
+    expect(screen.getByTestId('writing-detail-frame')).toBeInTheDocument()
     expect(screen.getByText('这里记录站点和专题内容的推进情况，方便快速查看最近新增、调整和阶段性结论。')).toBeInTheDocument()
     expect(screen.getByText('当前计划：VitePress 迁移进度。')).toBeInTheDocument()
   })
 
   it('renders the about and contact pages', () => {
     renderWithRouter('/about')
+    expect(screen.getByTestId('about-observatory-panel')).toBeInTheDocument()
     expect(screen.getByText(/SineCelia/)).toBeInTheDocument()
     expect(
       screen.getAllByText('这个知识站点主要整理性能测试、工具拆解和 OPC 相关内容，尽量写得深入浅出但不回避细节。').length
     ).toBeGreaterThan(0)
     expect(screen.getByText('COSBench')).toBeInTheDocument()
     renderWithRouter('/contact')
+    expect(screen.getByTestId('contact-signal-panel')).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /GitHub/i })).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /X/i })).toBeInTheDocument()
     expect(screen.getByText('代码仓库在 GitHub，更多日常动态和碎片想法会同步到 X。')).toBeInTheDocument()
