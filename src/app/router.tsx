@@ -10,7 +10,7 @@ import { ProjectsPage } from '@/pages/ProjectsPage'
 import { WritingDetailPage } from '@/pages/WritingDetailPage'
 import { WritingPage } from '@/pages/WritingPage'
 
-const routes: RouteObject[] = [
+export const routes: RouteObject[] = [
   {
     path: '/',
     element: <Layout />,
@@ -27,7 +27,9 @@ const routes: RouteObject[] = [
   }
 ]
 
-export const router = createBrowserRouter(routes)
+export function createAppRouter() {
+  return createBrowserRouter(routes)
+}
 
 export function createTestRouter(initialEntries: string[]) {
   return createMemoryRouter(routes, { initialEntries })
