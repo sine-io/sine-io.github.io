@@ -30,6 +30,7 @@ export function WritingPage() {
     <Container>
       <div className="relative isolate space-y-12 overflow-hidden py-16 md:space-y-16 md:py-24">
         <img
+          data-testid="writing-art"
           src={sectionArt}
           alt=""
           aria-hidden="true"
