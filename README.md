@@ -32,7 +32,7 @@ npm run build
 
 构建产物输出到 `dist/`，GitHub Pages 工作流也会发布这里的内容。
 
-当前部署保留 `BrowserRouter`。为支持 GitHub Pages 上的 SPA 深链与刷新，构建结束后会额外生成 `dist/404.html`，其内容与 `dist/index.html` 相同。这样 Pages 在未知路径返回 `404.html` 时，应用仍会在当前 URL 上启动并由前端路由接管。
+当前部署保留 `BrowserRouter`。为支持 GitHub Pages 上的 SPA 深链与刷新，构建结束后会额外生成 `dist/404.html`，其内容与 `dist/index.html` 相同。这个方案依赖 GitHub Pages 在未知路径返回仓库根目录的 `404.html`，从而让应用仍在当前 URL 上启动并由前端路由接管。
 
 ## 内容与资源位置
 
