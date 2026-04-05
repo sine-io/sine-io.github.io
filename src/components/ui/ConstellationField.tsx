@@ -1,14 +1,14 @@
-type StarNode = {
+export type StarNode = {
   cx: number
   cy: number
   r?: number
 }
 
-type StarPath = {
+export type StarPath = {
   d: string
 }
 
-type ConstellationFieldProps = {
+export type ConstellationFieldProps = {
   className?: string
   nodes: StarNode[]
   paths: StarPath[]
