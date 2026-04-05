@@ -4,7 +4,7 @@ import { SineWaveBg } from './SineWaveBg'
 
 export function Layout({ children }: PropsWithChildren) {
   return (
-    <div className="relative min-h-screen overflow-x-clip">
+    <div className="isolate relative min-h-screen overflow-x-clip">
       <SineWaveBg />
       <Navbar />
       <main>{children}</main>

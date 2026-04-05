@@ -4,7 +4,7 @@ import { Layout } from './Layout'
 
 describe('Layout', () => {
   it('renders the sticky brand nav, background layer, and child content', () => {
-    render(
+    const { container } = render(
       <MemoryRouter>
         <Layout>
           <p>child content</p>
@@ -12,6 +12,7 @@ describe('Layout', () => {
       </MemoryRouter>
     )
 
+    expect(container.firstChild).toHaveClass('isolate')
     expect(screen.getByRole('link', { name: /sine-io/i })).toBeInTheDocument()
     expect(screen.getByTestId('sine-wave-bg')).toHaveClass('z-[-1]')
     expect(screen.getByText('child content')).toBeInTheDocument()
