@@ -7,7 +7,7 @@ export function AboutPage() {
   return (
     <Container>
       <section className="space-y-8 py-16 md:py-24">
-        <SectionHeading eyebrow="Profile" title="About" description={profile.summary} />
+        <SectionHeading eyebrow="Profile" title="About" description={profile.summary} level={1} />
         <GlassPanel>
           <div className="space-y-6">
             <div className="space-y-2">

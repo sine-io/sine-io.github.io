@@ -7,6 +7,20 @@ describe('content pages', () => {
     expect(screen.getByText('OPC')).toBeInTheDocument()
   })
 
+  it('renders page-level titles as h1 headings', () => {
+    renderWithRouter('/projects')
+    expect(screen.getByRole('heading', { name: 'Projects', level: 1 })).toBeInTheDocument()
+
+    renderWithRouter('/writing')
+    expect(screen.getByRole('heading', { name: 'Writing', level: 1 })).toBeInTheDocument()
+
+    renderWithRouter('/about')
+    expect(screen.getByRole('heading', { name: 'About', level: 1 })).toBeInTheDocument()
+
+    renderWithRouter('/contact')
+    expect(screen.getByRole('heading', { name: 'Contact', level: 1 })).toBeInTheDocument()
+  })
+
   it('renders migrated OPC detail content from overview, roadmap, and glossary', () => {
     renderWithRouter('/projects/opc')
     expect(screen.getByText('当前内容：OPC 总览导航。')).toBeInTheDocument()

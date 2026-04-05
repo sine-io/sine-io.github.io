@@ -7,7 +7,7 @@ export function ContactPage() {
   return (
     <Container>
       <section className="space-y-8 py-16 md:py-24">
-        <SectionHeading eyebrow="Contact" title="Contact" description={profile.contactIntro} />
+        <SectionHeading eyebrow="Contact" title="Contact" description={profile.contactIntro} level={1} />
         <div className="grid gap-6 md:grid-cols-2">
           {profile.links.map((link) => (
             <GlassPanel key={link.href}>

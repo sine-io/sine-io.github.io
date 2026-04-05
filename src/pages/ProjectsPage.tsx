@@ -12,6 +12,7 @@ export function ProjectsPage() {
           eyebrow="Projects"
           title="Projects"
           description="集中查看长期维护的专题入口、路线图和术语整理。"
+          level={1}
         />
         <div className="grid gap-6 md:grid-cols-2">
           {projects.map((project) => (

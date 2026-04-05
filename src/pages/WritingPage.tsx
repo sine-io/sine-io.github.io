@@ -18,6 +18,7 @@ export function WritingPage() {
           eyebrow="Writing"
           title="Writing"
           description="把教程、短笔记和阶段更新按类型聚合到同一处，方便集中浏览。"
+          level={1}
         />
         {writingCategoryOrder.map((category) => {
           const entries = writingEntries.filter((entry) => entry.category === category)
