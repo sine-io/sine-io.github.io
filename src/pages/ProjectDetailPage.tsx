@@ -71,14 +71,9 @@ export function ProjectDetailPage() {
             <motion.div key={section.title} {...sectionRevealMotion}>
               <GlassPanel
                 variant="dense"
-                className="relative overflow-hidden rounded-[1.75rem] border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(6,13,30,0.82))] px-6 py-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_18px_64px_rgba(0,0,0,0.32),inset_0_1px_0_rgba(255,255,255,0.04)]"
+                className="rounded-[1.75rem] border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(6,13,30,0.82))] px-6 py-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_18px_64px_rgba(0,0,0,0.32),inset_0_1px_0_rgba(255,255,255,0.04)]"
               >
-                <section className="relative z-10">
-                  <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,rgba(166,222,252,0),rgba(166,222,252,0.4),rgba(166,222,252,0))]" />
-                  <div className="mb-4 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-[#75B3E1]">
-                    <span>{section.title}</span>
-                    <span className="h-px flex-1 bg-[linear-gradient(90deg,rgba(166,222,252,0.22),rgba(166,222,252,0))]" />
-                  </div>
+                <section>
                   <h2 className="text-2xl font-medium text-white">{section.title}</h2>
                   <div className="mt-4 space-y-4 text-[15px] leading-8 text-[#B5C2D8]">
                     {section.body.map((paragraph) => (

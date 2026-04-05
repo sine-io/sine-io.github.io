@@ -61,13 +61,8 @@ export function WritingDetailPage() {
         <motion.div {...sectionRevealMotion}>
           <GlassPanel
             variant="dense"
-            className="relative overflow-hidden rounded-[1.75rem] border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(6,13,30,0.82))] px-6 py-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_18px_64px_rgba(0,0,0,0.32),inset_0_1px_0_rgba(255,255,255,0.04)]"
+            className="rounded-[1.75rem] border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(6,13,30,0.82))] px-6 py-6 shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_18px_64px_rgba(0,0,0,0.32),inset_0_1px_0_rgba(255,255,255,0.04)]"
           >
-            <div className="pointer-events-none absolute inset-x-0 top-0 h-px bg-[linear-gradient(90deg,rgba(166,222,252,0),rgba(166,222,252,0.36),rgba(166,222,252,0))]" />
-            <div className="relative z-10 mb-4 flex items-center gap-3 text-xs uppercase tracking-[0.3em] text-[#75B3E1]">
-              <span>{categoryMeta.title}</span>
-              <span className="h-px flex-1 bg-[linear-gradient(90deg,rgba(166,222,252,0.22),rgba(166,222,252,0))]" />
-            </div>
             <div className="space-y-4 text-[15px] leading-8 text-[#B5C2D8]">
               {entry.body.map((paragraph) => (
                 <p key={paragraph}>{paragraph}</p>
