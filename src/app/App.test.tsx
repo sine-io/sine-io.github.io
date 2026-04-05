@@ -7,6 +7,6 @@ describe('App', () => {
 
     expect(screen.getByRole('link', { name: /sine-io/i })).toBeInTheDocument()
     expect(screen.getByTestId('sine-wave-bg')).toBeInTheDocument()
-    expect(screen.getByText('sine-io', { selector: 'div' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: "Hi, I'm sine-io." })).toBeInTheDocument()
   })
 })

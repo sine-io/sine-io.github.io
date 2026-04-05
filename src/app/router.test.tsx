@@ -4,7 +4,7 @@ import { renderWithRouter } from '@/test/renderWithRouter'
 describe('router', () => {
   it('renders the home page at /', () => {
     renderWithRouter('/')
-    expect(screen.getByRole('heading', { name: /Cyber-Wave/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: "Hi, I'm sine-io." })).toBeInTheDocument()
   })
 
   it('renders the OPC project page at /projects/opc', () => {
