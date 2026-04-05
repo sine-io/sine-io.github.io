@@ -1,15 +1,29 @@
-import { Link } from 'react-router-dom'
+import { useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { Container } from '@/components/ui/Container'
 import { GlassPanel } from '@/components/ui/GlassPanel'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { writingCategoryMeta, writingCategoryOrder, writingEntries } from '@/content/writing'
 
 export function WritingPage() {
+  const location = useLocation()
   const categoryAnchors: Record<(typeof writingCategoryOrder)[number], string> = {
     guide: 'guides',
     note: 'notes',
     update: 'updates'
   }
+
+  useEffect(() => {
+    if (!location.hash) {
+      return
+    }
+
+    const target = document.getElementById(location.hash.slice(1))
+
+    if (target) {
+      target.scrollIntoView()
+    }
+  }, [location.hash])
 
   return (
     <Container>

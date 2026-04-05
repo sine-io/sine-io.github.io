@@ -2,6 +2,23 @@ import { screen } from '@testing-library/react'
 import { renderWithRouter } from '@/test/renderWithRouter'
 
 describe('content pages', () => {
+  it('scrolls to the hash-targeted writing section', () => {
+    const originalScrollIntoView = Element.prototype.scrollIntoView
+    const scrollIntoViewMock = vi.fn()
+
+    Element.prototype.scrollIntoView = scrollIntoViewMock
+    try {
+      renderWithRouter('/writing#notes')
+
+      const notesSection = document.getElementById('notes')
+      expect(notesSection).not.toBeNull()
+      expect(scrollIntoViewMock).toHaveBeenCalled()
+      expect(scrollIntoViewMock.mock.instances).toContain(notesSection)
+    } finally {
+      Element.prototype.scrollIntoView = originalScrollIntoView
+    }
+  })
+
   it('lists OPC on the projects page', () => {
     renderWithRouter('/projects')
     expect(screen.getByText('OPC')).toBeInTheDocument()
