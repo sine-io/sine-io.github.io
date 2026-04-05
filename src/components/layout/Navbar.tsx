@@ -1,13 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import { Container } from '@/components/ui/Container'
-
-const navItems = [
-  { to: '/', label: 'Home' },
-  { to: '/projects', label: 'Projects' },
-  { to: '/writing', label: 'Writing' },
-  { to: '/about', label: 'About' },
-  { to: '/contact', label: 'Contact' }
-]
+import { siteNav } from '@/content/site'
 
 export function Navbar() {
   return (
@@ -18,7 +11,7 @@ export function Navbar() {
             sine-io
           </NavLink>
           <div className="hidden gap-6 text-sm md:flex">
-            {navItems.map((item) => (
+            {siteNav.map((item) => (
               <NavLink key={item.to} to={item.to} className="text-[#A6B4CD] transition hover:text-white">
                 {item.label}
               </NavLink>
