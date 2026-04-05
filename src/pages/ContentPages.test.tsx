@@ -22,9 +22,9 @@ describe('content pages', () => {
   it('lists OPC on the projects page', () => {
     renderWithRouter('/projects')
     expect(screen.getByText('OPC')).toBeInTheDocument()
-    expect(screen.getByTestId('projects-constellation')).toBeInTheDocument()
-    expect(screen.getByTestId('projects-art')).toHaveAttribute('alt', '')
     expect(screen.getByTestId('projects-art')).toHaveAttribute('aria-hidden', 'true')
+    expect(screen.getByTestId('projects-art')).toHaveAttribute('alt', '')
+    expect(screen.getByTestId('projects-constellation')).toBeInTheDocument()
   })
 
   it('renders page-level titles as h1 headings', () => {
@@ -51,8 +51,9 @@ describe('content pages', () => {
 
   it('groups writing entries from guides, notes, and updates', () => {
     renderWithRouter('/writing')
-    expect(screen.getByTestId('writing-art')).toHaveAttribute('alt', '')
     expect(screen.getByTestId('writing-art')).toHaveAttribute('aria-hidden', 'true')
+    expect(screen.getByTestId('writing-art')).toHaveAttribute('alt', '')
+    expect(screen.getByTestId('writing-constellation')).toBeInTheDocument()
     expect(screen.getByText('简明 COSBench 教程')).toBeInTheDocument()
     expect(screen.getByText('参数速查')).toBeInTheDocument()
     expect(screen.getByText('VitePress 迁移进度')).toBeInTheDocument()
