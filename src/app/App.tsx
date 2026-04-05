@@ -1,12 +1,6 @@
-import { MemoryRouter } from 'react-router-dom'
-import { Layout } from '@/components/layout/Layout'
+import { RouterProvider } from 'react-router-dom'
+import { router } from './router'
 
 export function App() {
-  return (
-    <MemoryRouter>
-      <Layout>
-        <div className="py-24 text-center">sine-io</div>
-      </Layout>
-    </MemoryRouter>
-  )
+  return <RouterProvider router={router} />
 }
