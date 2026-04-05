@@ -36,4 +36,9 @@ describe('router', () => {
     renderWithRouter('/writing/cosbench-guide')
     expect(screen.getByRole('heading', { name: 'Page not found' })).toBeInTheDocument()
   })
+
+  it('renders an internal writing detail route', () => {
+    renderWithRouter('/writing/portfolio-migration-note')
+    expect(screen.getByRole('heading', { name: 'Portfolio migration note' })).toBeInTheDocument()
+  })
 })

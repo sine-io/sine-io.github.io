@@ -17,7 +17,7 @@ export function WritingDetailPage() {
         <h1 className="text-4xl font-semibold text-white">{entry.title}</h1>
         <p className="mt-4 text-[#A6B4CD]">{entry.summary}</p>
         <div className="mt-8 space-y-3 text-[#A6B4CD]">
-          {entry.body?.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
+          {entry.body.map((paragraph) => <p key={paragraph}>{paragraph}</p>)}
         </div>
       </article>
     </Container>
