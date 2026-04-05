@@ -21,7 +21,7 @@ describe('Layout', () => {
     expect(main?.firstElementChild?.tagName).toBe('DIV')
   })
 
-  it('renders navigation links from siteNav', () => {
+  it('renders desktop and mobile navigation links from siteNav', () => {
     render(
       <MemoryRouter>
         <Layout>
@@ -31,7 +31,11 @@ describe('Layout', () => {
     )
 
     siteNav.forEach((item) => {
-      expect(screen.getByRole('link', { name: item.label })).toHaveAttribute('href', item.to)
+      const links = screen.getAllByRole('link', { name: item.label })
+      expect(links).toHaveLength(2)
+      links.forEach((link) => {
+        expect(link).toHaveAttribute('href', item.to)
+      })
     })
   })
 
