@@ -1,14 +1,27 @@
-export type WritingEntry = {
+type WritingEntryBase = {
   slug: string
   title: string
   category: 'guide' | 'note' | 'update'
   summary: string
-  externalUrl?: string
-  body?: string[]
 }
+
+export type ExternalWritingEntry = WritingEntryBase & {
+  kind: 'external'
+  externalUrl: string
+  body?: never
+}
+
+export type InternalWritingEntry = WritingEntryBase & {
+  kind: 'internal'
+  body: string[]
+  externalUrl?: never
+}
+
+export type WritingEntry = ExternalWritingEntry | InternalWritingEntry
 
 export const writingEntries: WritingEntry[] = [
   {
+    kind: 'external',
     slug: 'cosbench-guide',
     title: '简明 COSBench 教程',
     category: 'guide',
@@ -16,6 +29,7 @@ export const writingEntries: WritingEntry[] = [
     externalUrl: 'https://sine-io.github.io/byte-of-cosbench/'
   },
   {
+    kind: 'external',
     slug: 'vdbench-guide',
     title: '简明 Vdbench 教程',
     category: 'guide',

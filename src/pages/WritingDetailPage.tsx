@@ -5,9 +5,9 @@ import { NotFoundPage } from './NotFoundPage'
 
 export function WritingDetailPage() {
   const { slug } = useParams()
-  const entry = writingEntries.find((candidate) => candidate.slug === slug && !candidate.externalUrl)
+  const entry = writingEntries.find((candidate) => candidate.slug === slug)
 
-  if (!entry) {
+  if (!entry || entry.kind !== 'internal') {
     return <NotFoundPage />
   }
 

@@ -10,7 +10,7 @@ export function WritingPage() {
         <ul className="mt-8 space-y-6">
           {writingEntries.map((entry) => (
             <li key={entry.slug}>
-              {entry.externalUrl ? (
+              {entry.kind === 'external' ? (
                 <a href={entry.externalUrl} className="text-xl text-white hover:text-cyan-300">
                   {entry.title}
                 </a>

@@ -16,4 +16,24 @@ describe('router', () => {
     renderWithRouter('/writing')
     expect(screen.getByRole('heading', { name: 'Writing' })).toBeInTheDocument()
   })
+
+  it('renders the about page at /about', () => {
+    renderWithRouter('/about')
+    expect(screen.getByRole('heading', { name: 'About' })).toBeInTheDocument()
+  })
+
+  it('renders the contact page at /contact', () => {
+    renderWithRouter('/contact')
+    expect(screen.getByRole('heading', { name: 'Contact' })).toBeInTheDocument()
+  })
+
+  it('renders not found for unknown routes', () => {
+    renderWithRouter('/does-not-exist')
+    expect(screen.getByRole('heading', { name: 'Page not found' })).toBeInTheDocument()
+  })
+
+  it('renders not found for external writing entries on detail routes', () => {
+    renderWithRouter('/writing/cosbench-guide')
+    expect(screen.getByRole('heading', { name: 'Page not found' })).toBeInTheDocument()
+  })
 })
