@@ -55,7 +55,7 @@ export function HomePage() {
           className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(320px,0.8fr)]"
         >
           <GlassPanel
-            variant="hero"
+            variant="default"
             className="overflow-hidden border-[#A6DEFC]/30 bg-[linear-gradient(180deg,rgba(255,255,255,0.14),rgba(10,20,44,0.78))] shadow-[0_0_0_1px_rgba(166,222,252,0.12),0_36px_120px_rgba(0,0,0,0.46),0_0_64px_rgba(93,227,233,0.14),inset_0_1px_0_rgba(255,255,255,0.14)]"
           >
             <div className="relative isolate overflow-hidden rounded-[1.75rem]">
@@ -112,7 +112,7 @@ export function HomePage() {
             </div>
           </GlassPanel>
           <GlassPanel
-            variant="dense"
+            variant="default"
             className="border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(8,17,40,0.78))] shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_20px_64px_rgba(0,0,0,0.36),inset_0_1px_0_rgba(255,255,255,0.05)]"
           >
             <div className="space-y-4">
@@ -136,7 +136,7 @@ export function HomePage() {
             {featuredProjects.map((project) => (
               <GlassPanel
                 key={project.slug}
-                variant="dense"
+                variant="default"
                 className="rounded-[1.65rem] border-[#A6DEFC]/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(10,18,38,0.82))] shadow-[0_0_0_1px_rgba(166,222,252,0.05),0_18px_72px_rgba(0,0,0,0.34),inset_0_1px_0_rgba(255,255,255,0.05)]"
               >
                 <div className="space-y-4">
@@ -168,7 +168,7 @@ export function HomePage() {
             {featuredWriting.map((entry) => (
               <GlassPanel
                 key={entry.slug}
-                variant="dense"
+                variant="default"
                 className="rounded-[1.5rem] border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(6,13,30,0.84))] shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_18px_72px_rgba(0,0,0,0.36),inset_0_1px_0_rgba(255,255,255,0.05)]"
               >
                 <div className="space-y-4">
