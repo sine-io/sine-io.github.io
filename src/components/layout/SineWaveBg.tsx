@@ -3,7 +3,7 @@ export function SineWaveBg() {
     <div
       aria-hidden="true"
       data-testid="sine-wave-bg"
-      className="pointer-events-none absolute inset-0 -z-10 overflow-hidden opacity-15"
+      className="pointer-events-none absolute inset-0 z-[-1] overflow-hidden opacity-15"
     >
       <svg
         className="h-full w-full"

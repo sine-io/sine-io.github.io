@@ -13,7 +13,7 @@ describe('Layout', () => {
     )
 
     expect(screen.getByRole('link', { name: /sine-io/i })).toBeInTheDocument()
-    expect(screen.getByTestId('sine-wave-bg')).toBeInTheDocument()
+    expect(screen.getByTestId('sine-wave-bg')).toHaveClass('z-[-1]')
     expect(screen.getByText('child content')).toBeInTheDocument()
   })
 })
