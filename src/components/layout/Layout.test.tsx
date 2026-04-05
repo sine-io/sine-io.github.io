@@ -17,6 +17,8 @@ describe('Layout', () => {
     expect(screen.getByRole('link', { name: /sine-io/i })).toBeInTheDocument()
     expect(screen.getByTestId('sine-wave-bg')).toHaveClass('z-[-1]')
     expect(screen.getByText('child content')).toBeInTheDocument()
+    const main = container.querySelector('main')
+    expect(main?.firstElementChild?.tagName).toBe('DIV')
   })
 
   it('renders navigation links from siteNav', () => {

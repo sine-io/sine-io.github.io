@@ -1,10 +1,12 @@
 import { useEffect } from 'react'
+import { motion } from 'framer-motion'
 import { Link, useLocation } from 'react-router-dom'
 import sectionArt from '@/assets/visuals/svg2-optimized.svg'
 import { Container } from '@/components/ui/Container'
 import { GlassPanel } from '@/components/ui/GlassPanel'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { writingCategoryMeta, writingCategoryOrder, writingEntries } from '@/content/writing'
+import { sectionRevealMotion } from '@/lib/motion'
 
 export function WritingPage() {
   const location = useLocation()
@@ -36,20 +38,25 @@ export function WritingPage() {
           aria-hidden="true"
           className="pointer-events-none absolute right-[-8rem] top-0 h-48 max-w-none object-contain opacity-35 md:right-[-2rem]"
         />
-        <div className="relative z-10">
+        <motion.div {...sectionRevealMotion} className="relative z-10">
           <SectionHeading
             eyebrow="Writing"
             title="Writing"
             description="把教程、短笔记和阶段更新按类型聚合到同一处，方便集中浏览。"
             level={1}
           />
-        </div>
+        </motion.div>
         {writingCategoryOrder.map((category) => {
           const entries = writingEntries.filter((entry) => entry.category === category)
           const meta = writingCategoryMeta[category]
 
           return (
-            <section key={category} id={categoryAnchors[category]} className="space-y-6 scroll-mt-24">
+            <motion.section
+              key={category}
+              {...sectionRevealMotion}
+              id={categoryAnchors[category]}
+              className="space-y-6 scroll-mt-24"
+            >
               <SectionHeading eyebrow={meta.eyebrow} title={meta.title} description={meta.description} />
               <div className="grid gap-6 md:grid-cols-2">
                 {entries.map((entry) => (
@@ -78,7 +85,7 @@ export function WritingPage() {
                   </GlassPanel>
                 ))}
               </div>
-            </section>
+            </motion.section>
           )
         })}
       </div>

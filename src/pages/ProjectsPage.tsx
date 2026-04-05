@@ -1,9 +1,11 @@
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import sectionArt from '@/assets/visuals/svg2-optimized.svg'
 import { Container } from '@/components/ui/Container'
 import { GlassPanel } from '@/components/ui/GlassPanel'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { projects } from '@/content/projects'
+import { sectionRevealMotion } from '@/lib/motion'
 
 export function ProjectsPage() {
   return (
@@ -16,15 +18,15 @@ export function ProjectsPage() {
           aria-hidden="true"
           className="pointer-events-none absolute right-[-4rem] top-0 h-56 max-w-none object-contain opacity-50 md:right-0"
         />
-        <div className="relative z-10">
+        <motion.div {...sectionRevealMotion} className="relative z-10">
           <SectionHeading
             eyebrow="Projects"
             title="Projects"
             description="集中查看长期维护的专题入口、路线图和术语整理。"
             level={1}
           />
-        </div>
-        <div className="relative z-10 grid gap-6 md:grid-cols-2">
+        </motion.div>
+        <motion.div {...sectionRevealMotion} className="relative z-10 grid gap-6 md:grid-cols-2">
           {projects.map((project) => (
             <GlassPanel key={project.slug}>
               <div className="space-y-4">
@@ -43,7 +45,7 @@ export function ProjectsPage() {
               </div>
             </GlassPanel>
           ))}
-        </div>
+        </motion.div>
       </section>
     </Container>
   )

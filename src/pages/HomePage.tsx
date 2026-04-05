@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import heroArt from '@/assets/visuals/svg1-optimized.svg'
 import { Container } from '@/components/ui/Container'
@@ -6,6 +7,7 @@ import { SectionHeading } from '@/components/ui/SectionHeading'
 import { projects } from '@/content/projects'
 import { homeContent, siteMeta } from '@/content/site'
 import { writingEntries } from '@/content/writing'
+import { sectionRevealMotion } from '@/lib/motion'
 
 function pickItemsBySlug<T extends { slug: string }>(items: T[], slugs: string[]) {
   return slugs
@@ -20,7 +22,10 @@ export function HomePage() {
   return (
     <Container>
       <div className="space-y-16 py-16 md:space-y-24 md:py-24">
-        <section className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(320px,0.8fr)]">
+        <motion.section
+          {...sectionRevealMotion}
+          className="grid gap-6 lg:grid-cols-[minmax(0,1.4fr)_minmax(320px,0.8fr)]"
+        >
           <GlassPanel>
             <div className="relative isolate overflow-hidden">
               <img
@@ -48,9 +53,9 @@ export function HomePage() {
               ))}
             </div>
           </GlassPanel>
-        </section>
+        </motion.section>
 
-        <section className="space-y-8">
+        <motion.section {...sectionRevealMotion} className="space-y-8">
           <SectionHeading
             eyebrow="Projects"
             title="Featured Projects"
@@ -76,9 +81,9 @@ export function HomePage() {
               </GlassPanel>
             ))}
           </div>
-        </section>
+        </motion.section>
 
-        <section className="space-y-8">
+        <motion.section {...sectionRevealMotion} className="space-y-8">
           <SectionHeading
             eyebrow="Writing"
             title="Selected Writing"
@@ -109,9 +114,12 @@ export function HomePage() {
               </GlassPanel>
             ))}
           </div>
-        </section>
+        </motion.section>
 
-        <section className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]">
+        <motion.section
+          {...sectionRevealMotion}
+          className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]"
+        >
           <GlassPanel>
             <figure className="space-y-4">
               <img
@@ -171,7 +179,7 @@ export function HomePage() {
               </div>
             </div>
           </GlassPanel>
-        </section>
+        </motion.section>
       </div>
     </Container>
   )

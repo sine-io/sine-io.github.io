@@ -1,5 +1,7 @@
 import type { PropsWithChildren } from 'react'
+import { motion } from 'framer-motion'
 import { Outlet } from 'react-router-dom'
+import { pageShellMotion } from '@/lib/motion'
 import { Navbar } from './Navbar'
 import { SineWaveBg } from './SineWaveBg'
 
@@ -8,7 +10,9 @@ export function Layout({ children }: PropsWithChildren) {
     <div className="isolate relative min-h-screen overflow-x-clip">
       <SineWaveBg />
       <Navbar />
-      <main>{children ?? <Outlet />}</main>
+      <main>
+        <motion.div {...pageShellMotion}>{children ?? <Outlet />}</motion.div>
+      </main>
     </div>
   )
 }
