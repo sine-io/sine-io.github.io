@@ -5,6 +5,8 @@ type WritingEntryBase = {
   summary: string
 }
 
+export type WritingCategory = WritingEntryBase['category']
+
 export type ExternalWritingEntry = WritingEntryBase & {
   kind: 'external'
   externalUrl: string
@@ -19,14 +21,40 @@ export type InternalWritingEntry = WritingEntryBase & {
 
 export type WritingEntry = ExternalWritingEntry | InternalWritingEntry
 
+export const writingCategoryOrder: WritingCategory[] = ['guide', 'note', 'update']
+
+export const writingCategoryMeta: Record<
+  WritingCategory,
+  { eyebrow: string; title: string; description: string }
+> = {
+  guide: {
+    eyebrow: 'Guide',
+    title: 'Guides',
+    description: '这一部分保留教程索引入口。完整教程仍发布在独立站点，这里只提供稳定链接与简短说明，方便集中查找。'
+  },
+  note: {
+    eyebrow: 'Note',
+    title: 'Notes',
+    description: '这一部分放较短的技术笔记，用来收纳实验观察、参数对比、排障片段和暂时不扩成长文的碎片知识。'
+  },
+  update: {
+    eyebrow: 'Update',
+    title: 'Updates',
+    description: '这里记录站点和专题内容的推进情况，方便快速查看最近新增、调整和阶段性结论。'
+  }
+}
+
 export const writingEntries: WritingEntry[] = [
   {
     kind: 'internal',
     slug: 'portfolio-migration-note',
     title: 'Portfolio migration note',
     category: 'update',
-    summary: '占位用的站内文章条目，用来验证 /writing/:slug 的正向路由。',
-    body: ['这是一条最小的站内占位内容。']
+    summary: '记录站点和专题内容的推进情况，方便快速查看最近新增、调整和阶段性结论。',
+    body: [
+      '这里记录站点和专题内容的推进情况，方便快速查看最近新增、调整和阶段性结论。',
+      '当前计划：VitePress 迁移进度。'
+    ]
   },
   {
     kind: 'external',

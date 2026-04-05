@@ -2,27 +2,7 @@ import { Link } from 'react-router-dom'
 import { Container } from '@/components/ui/Container'
 import { GlassPanel } from '@/components/ui/GlassPanel'
 import { SectionHeading } from '@/components/ui/SectionHeading'
-import { writingEntries } from '@/content/writing'
-
-const categoryMeta = {
-  guide: {
-    eyebrow: 'Guide',
-    title: 'Guides',
-    description: '教程索引保留稳定链接，也为后续补充的站内教程预留位置。'
-  },
-  note: {
-    eyebrow: 'Note',
-    title: 'Notes',
-    description: '较短的技术笔记，用来收纳实验观察、参数对比和排障片段。'
-  },
-  update: {
-    eyebrow: 'Update',
-    title: 'Updates',
-    description: '记录站点和专题内容的推进情况，方便快速查看阶段性进展。'
-  }
-} as const
-
-const categoryOrder = ['guide', 'note', 'update'] as const
+import { writingCategoryMeta, writingCategoryOrder, writingEntries } from '@/content/writing'
 
 export function WritingPage() {
   return (
@@ -33,9 +13,9 @@ export function WritingPage() {
           title="Writing"
           description="把教程、短笔记和阶段更新按类型聚合到同一处，方便集中浏览。"
         />
-        {categoryOrder.map((category) => {
+        {writingCategoryOrder.map((category) => {
           const entries = writingEntries.filter((entry) => entry.category === category)
-          const meta = categoryMeta[category]
+          const meta = writingCategoryMeta[category]
 
           return (
             <section key={category} className="space-y-6">
