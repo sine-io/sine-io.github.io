@@ -9,6 +9,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
+    "pretest": "npm run typecheck",
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
