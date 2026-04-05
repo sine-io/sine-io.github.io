@@ -69,6 +69,40 @@ describe('Layout', () => {
     expect(secondShell).not.toBe(firstShell)
   })
 
+  it('scrolls to top when the pathname changes', async () => {
+    const scrollToMock = vi.fn()
+    const originalScrollTo = window.scrollTo
+    window.scrollTo = scrollToMock
+
+    try {
+      const router = createMemoryRouter(
+        [
+          {
+            path: '/',
+            element: <Layout />,
+            children: [
+              { path: 'one', element: <p>route one</p> },
+              { path: 'two', element: <p>route two</p> }
+            ]
+          }
+        ],
+        { initialEntries: ['/one'] }
+      )
+
+      render(<RouterProvider router={router} />)
+
+      scrollToMock.mockClear()
+
+      await act(async () => {
+        await router.navigate('/two')
+      })
+
+      expect(scrollToMock).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'auto' })
+    } finally {
+      window.scrollTo = originalScrollTo
+    }
+  })
+
   it('does not remount the page shell for hash-only navigation on the same pathname', async () => {
     const router = createMemoryRouter(
       [
@@ -94,5 +128,36 @@ describe('Layout', () => {
     const secondShell = container.querySelector('main > div')
 
     expect(secondShell).toBe(firstShell)
+  })
+
+  it('does not scroll to top for hash-only navigation on the same pathname', async () => {
+    const scrollToMock = vi.fn()
+    const originalScrollTo = window.scrollTo
+    window.scrollTo = scrollToMock
+
+    try {
+      const router = createMemoryRouter(
+        [
+          {
+            path: '/',
+            element: <Layout />,
+            children: [{ path: 'writing', element: <p>writing route</p> }]
+          }
+        ],
+        { initialEntries: ['/writing'] }
+      )
+
+      render(<RouterProvider router={router} />)
+
+      scrollToMock.mockClear()
+
+      await act(async () => {
+        await router.navigate('/writing#notes')
+      })
+
+      expect(scrollToMock).not.toHaveBeenCalled()
+    } finally {
+      window.scrollTo = originalScrollTo
+    }
   })
 })
