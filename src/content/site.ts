@@ -26,7 +26,35 @@ export const homeContent = {
     alt: '雨后初晴-成研所',
     caption: '照片由 SineCelia 拍摄于成研所。'
   },
-  contactCallout: {
+  browseLinks: [
+    {
+      label: 'OPC 专题',
+      description: '集中放置项目背景、关键概念、路线图和术语整理。',
+      href: '/projects/opc'
+    },
+    {
+      label: '关于作者',
+      description: '查看 SineCelia 的关注方向、写作范围和站点定位。',
+      href: '/about'
+    },
+    {
+      label: '实验与短笔记',
+      description: '记录参数差异、踩坑复盘和不值得单独写成长文的观察。',
+      href: '/writing'
+    },
+    {
+      label: '最近更新',
+      description: '按阶段记录站点迁移进度、专题推进和内容补充情况。',
+      href: '/writing'
+    },
+    {
+      label: 'GitHub 与动态',
+      description: '代码仓库在 GitHub，更多日常动态和碎片想法会同步到 X。',
+      href: 'https://github.com/sine-io',
+      external: true
+    }
+  ],
+  browseCallout: {
     title: '继续浏览',
     description: '代码仓库在 GitHub，更多日常动态和碎片想法会同步到 X。'
   }

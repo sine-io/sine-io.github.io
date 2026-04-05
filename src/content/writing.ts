@@ -21,6 +21,14 @@ export type WritingEntry = ExternalWritingEntry | InternalWritingEntry
 
 export const writingEntries: WritingEntry[] = [
   {
+    kind: 'internal',
+    slug: 'portfolio-migration-note',
+    title: 'Portfolio migration note',
+    category: 'update',
+    summary: '占位用的站内文章条目，用来验证 /writing/:slug 的正向路由。',
+    body: ['这是一条最小的站内占位内容。']
+  },
+  {
     kind: 'external',
     slug: 'cosbench-guide',
     title: '简明 COSBench 教程',

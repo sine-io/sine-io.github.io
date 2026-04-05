@@ -2,7 +2,6 @@ import { Link } from 'react-router-dom'
 import { Container } from '@/components/ui/Container'
 import { GlassPanel } from '@/components/ui/GlassPanel'
 import { SectionHeading } from '@/components/ui/SectionHeading'
-import { profile } from '@/content/profile'
 import { projects } from '@/content/projects'
 import { homeContent, siteMeta } from '@/content/site'
 import { writingEntries } from '@/content/writing'
@@ -115,10 +114,35 @@ export function HomePage() {
           <GlassPanel>
             <div className="space-y-6">
               <SectionHeading
-                eyebrow="Contact"
-                title={homeContent.contactCallout.title}
-                description={homeContent.contactCallout.description}
+                eyebrow="Browse"
+                title={homeContent.browseCallout.title}
+                description={homeContent.browseCallout.description}
               />
+              <div className="grid gap-4">
+                {homeContent.browseLinks.map((link) =>
+                  link.external ? (
+                    <a
+                      key={link.label}
+                      href={link.href}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="rounded-2xl border border-white/10 px-4 py-4 transition hover:border-[#75B3E1]"
+                    >
+                      <p className="text-sm font-medium text-white">{link.label}</p>
+                      <p className="mt-2 text-sm text-[#A6B4CD]">{link.description}</p>
+                    </a>
+                  ) : (
+                    <Link
+                      key={link.label}
+                      to={link.href}
+                      className="rounded-2xl border border-white/10 px-4 py-4 transition hover:border-[#75B3E1]"
+                    >
+                      <p className="text-sm font-medium text-white">{link.label}</p>
+                      <p className="mt-2 text-sm text-[#A6B4CD]">{link.description}</p>
+                    </Link>
+                  )
+                )}
+              </div>
               <div className="flex flex-wrap gap-3">
                 <Link
                   to="/contact"
@@ -126,17 +150,6 @@ export function HomePage() {
                 >
                   联系方式
                 </Link>
-                {profile.links.map((link) => (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="rounded-full border border-white/10 px-4 py-2 text-sm text-white transition hover:border-[#75B3E1] hover:text-[#75B3E1]"
-                  >
-                    {link.label}
-                  </a>
-                ))}
               </div>
             </div>
           </GlassPanel>
