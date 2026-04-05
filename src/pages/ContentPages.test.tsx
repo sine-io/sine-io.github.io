@@ -30,6 +30,7 @@ describe('content pages', () => {
   it('renders page-level titles as h1 headings', () => {
     renderWithRouter('/projects')
     expect(screen.getByRole('heading', { name: 'Projects', level: 1 })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Projects', level: 1 })).toHaveClass('text-[#F4FAFF]')
 
     renderWithRouter('/writing')
     expect(screen.getByRole('heading', { name: 'Writing', level: 1 })).toBeInTheDocument()
