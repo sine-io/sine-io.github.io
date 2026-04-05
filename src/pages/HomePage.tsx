@@ -43,6 +43,21 @@ const homeBrowseConstellationPaths = [
   { d: 'M48 24L84 32' }
 ]
 
+const homePanelStyles = {
+  hero:
+    'overflow-hidden border-[#A6DEFC]/30 bg-[linear-gradient(180deg,rgba(255,255,255,0.14),rgba(10,20,44,0.78))] shadow-[0_0_0_1px_rgba(166,222,252,0.12),0_36px_120px_rgba(0,0,0,0.46),0_0_64px_rgba(93,227,233,0.14),inset_0_1px_0_rgba(255,255,255,0.14)]',
+  overview:
+    'border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(8,17,40,0.78))] shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_20px_64px_rgba(0,0,0,0.36),inset_0_1px_0_rgba(255,255,255,0.05)]',
+  project:
+    'rounded-[1.65rem] border-[#A6DEFC]/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(10,18,38,0.82))] shadow-[0_0_0_1px_rgba(166,222,252,0.05),0_18px_72px_rgba(0,0,0,0.34),inset_0_1px_0_rgba(255,255,255,0.05)]',
+  writing:
+    'rounded-[1.5rem] border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(6,13,30,0.84))] shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_18px_72px_rgba(0,0,0,0.36),inset_0_1px_0_rgba(255,255,255,0.05)]',
+  photo: 'bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(8,17,40,0.64))]',
+  contact:
+    'relative isolate overflow-hidden border-[#A6DEFC]/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.09),rgba(8,17,40,0.78))]',
+  browse: 'relative overflow-hidden rounded-[1.5rem] border border-white/8 bg-black/10 p-5'
+} as const
+
 export function HomePage() {
   const featuredProjects = pickItemsBySlug(projects, homeContent.featuredProjectSlugs)
   const featuredWriting = pickItemsBySlug(writingEntries, homeContent.featuredWritingSlugs)
@@ -56,7 +71,7 @@ export function HomePage() {
         >
           <GlassPanel
             variant="default"
-            className="overflow-hidden border-[#A6DEFC]/30 bg-[linear-gradient(180deg,rgba(255,255,255,0.14),rgba(10,20,44,0.78))] shadow-[0_0_0_1px_rgba(166,222,252,0.12),0_36px_120px_rgba(0,0,0,0.46),0_0_64px_rgba(93,227,233,0.14),inset_0_1px_0_rgba(255,255,255,0.14)]"
+            className={homePanelStyles.hero}
           >
             <div className="relative isolate overflow-hidden rounded-[1.75rem]">
               <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(166,222,252,0.12),rgba(166,222,252,0))]" />
@@ -113,7 +128,7 @@ export function HomePage() {
           </GlassPanel>
           <GlassPanel
             variant="default"
-            className="border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(8,17,40,0.78))] shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_20px_64px_rgba(0,0,0,0.36),inset_0_1px_0_rgba(255,255,255,0.05)]"
+            className={homePanelStyles.overview}
           >
             <div className="space-y-4">
               <p className="text-xs uppercase tracking-[0.35em] text-[#75B3E1]">Overview</p>
@@ -137,7 +152,7 @@ export function HomePage() {
               <GlassPanel
                 key={project.slug}
                 variant="default"
-                className="rounded-[1.65rem] border-[#A6DEFC]/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(10,18,38,0.82))] shadow-[0_0_0_1px_rgba(166,222,252,0.05),0_18px_72px_rgba(0,0,0,0.34),inset_0_1px_0_rgba(255,255,255,0.05)]"
+                className={homePanelStyles.project}
               >
                 <div className="space-y-4">
                   <div className="flex flex-wrap gap-2">
@@ -169,7 +184,7 @@ export function HomePage() {
               <GlassPanel
                 key={entry.slug}
                 variant="default"
-                className="rounded-[1.5rem] border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(6,13,30,0.84))] shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_18px_72px_rgba(0,0,0,0.36),inset_0_1px_0_rgba(255,255,255,0.05)]"
+                className={homePanelStyles.writing}
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between gap-4 border-b border-white/8 pb-4">
@@ -202,7 +217,7 @@ export function HomePage() {
           {...sectionRevealMotion}
           className="grid gap-6 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)]"
         >
-          <GlassPanel className="bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(8,17,40,0.64))]">
+          <GlassPanel className={homePanelStyles.photo}>
             <figure className="space-y-4">
               <img
                 src="/serein.jpg"
@@ -212,7 +227,7 @@ export function HomePage() {
               <figcaption className="text-sm text-[#A6B4CD]">{homeContent.photo.caption}</figcaption>
             </figure>
           </GlassPanel>
-          <GlassPanel className="relative isolate overflow-hidden border-[#A6DEFC]/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.09),rgba(8,17,40,0.78))]">
+          <GlassPanel className={homePanelStyles.contact}>
             <div className="pointer-events-none absolute right-[-18%] top-[-16%] h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(93,227,233,0.16),rgba(93,227,233,0))]" />
             <div className="space-y-6">
               <SectionHeading
@@ -229,7 +244,7 @@ export function HomePage() {
                   联系方式
                 </Link>
               </div>
-              <div className="relative overflow-hidden rounded-[1.5rem] border border-white/8 bg-black/10 p-5">
+              <div className={homePanelStyles.browse}>
                 <ConstellationField
                   nodes={homeBrowseConstellationNodes}
                   paths={homeBrowseConstellationPaths}
