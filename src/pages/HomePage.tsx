@@ -5,7 +5,6 @@ import { SectionHeading } from '@/components/ui/SectionHeading'
 import { projects } from '@/content/projects'
 import { homeContent, siteMeta } from '@/content/site'
 import { writingEntries } from '@/content/writing'
-import serenePhoto from '../../docs/public/serein.jpg'
 
 function pickItemsBySlug<T extends { slug: string }>(items: T[], slugs: string[]) {
   return slugs
@@ -104,7 +103,7 @@ export function HomePage() {
           <GlassPanel>
             <figure className="space-y-4">
               <img
-                src={serenePhoto}
+                src="/serein.jpg"
                 alt={homeContent.photo.alt}
                 className="h-72 w-full rounded-2xl object-cover"
               />
