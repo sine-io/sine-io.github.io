@@ -1,5 +1,6 @@
 import path from 'node:path'
 import { defineConfig } from 'vite'
+import { configDefaults } from 'vitest/config'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 
@@ -13,6 +14,7 @@ export default defineConfig({
   test: {
     environment: 'jsdom',
     setupFiles: ['./src/test/setup.ts'],
-    globals: true
+    globals: true,
+    exclude: [...configDefaults.exclude, '.worktrees/**']
   }
 })
