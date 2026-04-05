@@ -1,21 +1,30 @@
 import { Container } from '@/components/ui/Container'
+import { GlassPanel } from '@/components/ui/GlassPanel'
+import { SectionHeading } from '@/components/ui/SectionHeading'
 import { profile } from '@/content/profile'
 
 export function ContactPage() {
   return (
     <Container>
-      <section className="py-24">
-        <h1 className="text-4xl font-semibold text-white">Contact</h1>
-        <p className="mt-4 text-[#A6B4CD]">{profile.contactIntro}</p>
-        <ul className="mt-8 space-y-3">
+      <section className="space-y-8 py-16 md:py-24">
+        <SectionHeading eyebrow="Contact" title="Contact" description={profile.contactIntro} />
+        <div className="grid gap-6 md:grid-cols-2">
           {profile.links.map((link) => (
-            <li key={link.href}>
-              <a href={link.href} className="text-white hover:text-cyan-300">
-                {link.label}
-              </a>
-            </li>
+            <GlassPanel key={link.href}>
+              <div className="space-y-4">
+                <h2 className="text-2xl font-semibold text-white">{link.label}</h2>
+                <a
+                  href={link.href}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="text-sm font-medium text-[#75B3E1] transition hover:text-white"
+                >
+                  {link.href}
+                </a>
+              </div>
+            </GlassPanel>
           ))}
-        </ul>
+        </div>
       </section>
     </Container>
   )
