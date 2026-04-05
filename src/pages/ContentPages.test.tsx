@@ -1,4 +1,4 @@
-import { screen } from '@testing-library/react'
+import { screen, within } from '@testing-library/react'
 import { renderWithRouter } from '@/test/renderWithRouter'
 
 describe('content pages', () => {
@@ -47,7 +47,15 @@ describe('content pages', () => {
     expect(screen.getByRole('heading', { name: 'OPC', level: 1 })).toBeInTheDocument()
     expect(screen.getByRole('heading', { name: 'OPC 术语表', level: 2 })).toBeInTheDocument()
     expect(screen.getAllByText('OPC 术语表')).toHaveLength(1)
-    expect(screen.getByTestId('project-detail-frame')).toBeInTheDocument()
+    const detailFrame = screen.getByTestId('project-detail-frame')
+    expect(detailFrame).toBeInTheDocument()
+    expect(within(detailFrame).getByText('Project Entry')).toBeInTheDocument()
+    expect(detailFrame.querySelector('svg')).not.toBeNull()
+    const detailBody = detailFrame.nextElementSibling
+    expect(detailBody).not.toBeNull()
+    const detailBodyElement = detailBody as HTMLElement
+    expect(within(detailBodyElement).queryByText('Project Entry')).not.toBeInTheDocument()
+    expect(detailBodyElement.querySelector('svg')).toBeNull()
     expect(screen.getByText('当前内容：OPC 总览导航。')).toBeInTheDocument()
     expect(screen.getByText('这页用来跟踪 OPC 方向上的阶段目标，把要做的事拆开，避免概念和计划混在一起。')).toBeInTheDocument()
     expect(screen.getByText('计划术语：核心对象与角色。')).toBeInTheDocument()
@@ -70,8 +78,17 @@ describe('content pages', () => {
   it('renders migrated internal writing detail content', () => {
     renderWithRouter('/writing/vitepress-migration-progress')
     expect(screen.getByRole('heading', { name: 'VitePress 迁移进度', level: 1 })).toBeInTheDocument()
-    expect(screen.getByTestId('writing-detail-frame')).toBeInTheDocument()
-    expect(screen.queryByText('Updates')).not.toBeInTheDocument()
+    const detailFrame = screen.getByTestId('writing-detail-frame')
+    expect(detailFrame).toBeInTheDocument()
+    expect(within(detailFrame).getByText('Update')).toBeInTheDocument()
+    expect(within(detailFrame).getByText('Internal Entry')).toBeInTheDocument()
+    expect(detailFrame.querySelector('svg')).not.toBeNull()
+    const detailBody = detailFrame.nextElementSibling
+    expect(detailBody).not.toBeNull()
+    const detailBodyElement = detailBody as HTMLElement
+    expect(within(detailBodyElement).queryByText('Updates')).not.toBeInTheDocument()
+    expect(within(detailBodyElement).queryByText('Internal Entry')).not.toBeInTheDocument()
+    expect(detailBodyElement.querySelector('svg')).toBeNull()
     expect(screen.getByText('这里记录站点和专题内容的推进情况，方便快速查看最近新增、调整和阶段性结论。')).toBeInTheDocument()
     expect(screen.getByText('当前计划：VitePress 迁移进度。')).toBeInTheDocument()
   })
