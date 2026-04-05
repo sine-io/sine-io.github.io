@@ -9,6 +9,7 @@
     "dev": "vite",
     "build": "vite build",
     "prebuild": "npm run assets:optimize",
+    "postbuild": "node scripts/copy-spa-fallback.mjs",
     "preview": "vite preview",
     "pretest": "npm run assets:optimize && npm run typecheck",
     "typecheck": "tsc --noEmit",
