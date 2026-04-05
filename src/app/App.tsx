@@ -1,3 +1,12 @@
+import { MemoryRouter } from 'react-router-dom'
+import { Layout } from '@/components/layout/Layout'
+
 export function App() {
-  return <div className="min-h-screen bg-[#0A1128] text-[#A6B4CD]">sine-io</div>
+  return (
+    <MemoryRouter>
+      <Layout>
+        <div className="py-24 text-center">sine-io</div>
+      </Layout>
+    </MemoryRouter>
+  )
 }
