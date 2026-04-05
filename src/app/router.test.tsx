@@ -38,7 +38,7 @@ describe('router', () => {
   })
 
   it('renders an internal writing detail route', () => {
-    renderWithRouter('/writing/portfolio-migration-note')
-    expect(screen.getByRole('heading', { name: 'Portfolio migration note' })).toBeInTheDocument()
+    renderWithRouter('/writing/vitepress-migration-progress')
+    expect(screen.getByRole('heading', { name: 'VitePress 迁移进度' })).toBeInTheDocument()
   })
 })

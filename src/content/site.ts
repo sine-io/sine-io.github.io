@@ -40,12 +40,12 @@ export const homeContent = {
     {
       label: '实验与短笔记',
       description: '记录参数差异、踩坑复盘和不值得单独写成长文的观察。',
-      href: '/writing'
+      href: '/writing#notes'
     },
     {
       label: '最近更新',
       description: '按阶段记录站点迁移进度、专题推进和内容补充情况。',
-      href: '/writing'
+      href: '/writing#updates'
     },
     {
       label: 'GitHub 与动态',

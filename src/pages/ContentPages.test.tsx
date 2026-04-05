@@ -19,6 +19,7 @@ describe('content pages', () => {
     expect(screen.getByText('简明 COSBench 教程')).toBeInTheDocument()
     expect(screen.getByText('参数速查')).toBeInTheDocument()
     expect(screen.getByText('VitePress 迁移进度')).toBeInTheDocument()
+    expect(screen.queryByText('Portfolio migration note')).not.toBeInTheDocument()
     expect(screen.getByText('这一部分保留教程索引入口。完整教程仍发布在独立站点，这里只提供稳定链接与简短说明，方便集中查找。')).toBeInTheDocument()
     expect(screen.getByText('这一部分放较短的技术笔记，用来收纳实验观察、参数对比、排障片段和暂时不扩成长文的碎片知识。')).toBeInTheDocument()
     expect(screen.getByText('这里记录站点和专题内容的推进情况，方便快速查看最近新增、调整和阶段性结论。')).toBeInTheDocument()

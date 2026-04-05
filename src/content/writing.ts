@@ -46,17 +46,6 @@ export const writingCategoryMeta: Record<
 
 export const writingEntries: WritingEntry[] = [
   {
-    kind: 'internal',
-    slug: 'portfolio-migration-note',
-    title: 'Portfolio migration note',
-    category: 'update',
-    summary: '记录站点和专题内容的推进情况，方便快速查看最近新增、调整和阶段性结论。',
-    body: [
-      '这里记录站点和专题内容的推进情况，方便快速查看最近新增、调整和阶段性结论。',
-      '当前计划：VitePress 迁移进度。'
-    ]
-  },
-  {
     kind: 'external',
     slug: 'cosbench-guide',
     title: '简明 COSBench 教程',

@@ -5,6 +5,12 @@ import { SectionHeading } from '@/components/ui/SectionHeading'
 import { writingCategoryMeta, writingCategoryOrder, writingEntries } from '@/content/writing'
 
 export function WritingPage() {
+  const categoryAnchors: Record<(typeof writingCategoryOrder)[number], string> = {
+    guide: 'guides',
+    note: 'notes',
+    update: 'updates'
+  }
+
   return (
     <Container>
       <div className="space-y-12 py-16 md:space-y-16 md:py-24">
@@ -18,7 +24,7 @@ export function WritingPage() {
           const meta = writingCategoryMeta[category]
 
           return (
-            <section key={category} className="space-y-6">
+            <section key={category} id={categoryAnchors[category]} className="space-y-6 scroll-mt-24">
               <SectionHeading eyebrow={meta.eyebrow} title={meta.title} description={meta.description} />
               <div className="grid gap-6 md:grid-cols-2">
                 {entries.map((entry) => (
