@@ -114,35 +114,10 @@ export function HomePage() {
           <GlassPanel>
             <div className="space-y-6">
               <SectionHeading
-                eyebrow="Browse"
-                title={homeContent.browseCallout.title}
-                description={homeContent.browseCallout.description}
+                eyebrow="Contact"
+                title={homeContent.contactCallout.title}
+                description={homeContent.contactCallout.description}
               />
-              <div className="grid gap-4">
-                {homeContent.browseLinks.map((link) =>
-                  link.external ? (
-                    <a
-                      key={link.label}
-                      href={link.href}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="rounded-2xl border border-white/10 px-4 py-4 transition hover:border-[#75B3E1]"
-                    >
-                      <p className="text-sm font-medium text-white">{link.label}</p>
-                      <p className="mt-2 text-sm text-[#A6B4CD]">{link.description}</p>
-                    </a>
-                  ) : (
-                    <Link
-                      key={link.label}
-                      to={link.href}
-                      className="rounded-2xl border border-white/10 px-4 py-4 transition hover:border-[#75B3E1]"
-                    >
-                      <p className="text-sm font-medium text-white">{link.label}</p>
-                      <p className="mt-2 text-sm text-[#A6B4CD]">{link.description}</p>
-                    </Link>
-                  )
-                )}
-              </div>
               <div className="flex flex-wrap gap-3">
                 <Link
                   to="/contact"
@@ -150,6 +125,38 @@ export function HomePage() {
                 >
                   联系方式
                 </Link>
+              </div>
+              <div className="space-y-4">
+                <SectionHeading
+                  eyebrow="Browse"
+                  title={homeContent.browseCallout.title}
+                  description={homeContent.browseCallout.description}
+                />
+                <div className="grid gap-4">
+                  {homeContent.browseLinks.map((link) =>
+                    link.external ? (
+                      <a
+                        key={link.label}
+                        href={link.href}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="rounded-2xl border border-white/10 px-4 py-4 transition hover:border-[#75B3E1]"
+                      >
+                        <p className="text-sm font-medium text-white">{link.label}</p>
+                        <p className="mt-2 text-sm text-[#A6B4CD]">{link.description}</p>
+                      </a>
+                    ) : (
+                      <Link
+                        key={link.label}
+                        to={link.href}
+                        className="rounded-2xl border border-white/10 px-4 py-4 transition hover:border-[#75B3E1]"
+                      >
+                        <p className="text-sm font-medium text-white">{link.label}</p>
+                        <p className="mt-2 text-sm text-[#A6B4CD]">{link.description}</p>
+                      </Link>
+                    )
+                  )}
+                </div>
               </div>
             </div>
           </GlassPanel>

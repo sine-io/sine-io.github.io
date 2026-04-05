@@ -54,6 +54,10 @@ export const homeContent = {
       external: true
     }
   ],
+  contactCallout: {
+    title: 'Contact',
+    description: '如果你想交流性能测试、自动化工具或长期维护中的经验，可以通过下面这些入口联系。'
+  },
   browseCallout: {
     title: '继续浏览',
     description: '代码仓库在 GitHub，更多日常动态和碎片想法会同步到 X。'
