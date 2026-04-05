@@ -1,4 +1,4 @@
-name: Deploy VitePress site to Pages
+name: Deploy React portfolio to Pages
 
 on:
   push:
@@ -27,10 +27,10 @@ jobs:
           cache: npm
       - uses: actions/configure-pages@v5
       - run: npm ci
-      - run: npm run docs:build
+      - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: docs/.vitepress/dist
+          path: dist
 
   deploy:
     needs: build
