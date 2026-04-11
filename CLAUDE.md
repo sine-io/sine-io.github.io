@@ -17,3 +17,10 @@ Key routing rules:
 - Architecture review → invoke plan-eng-review
 - Save progress, checkpoint, resume → invoke checkpoint
 - Code quality, health check → invoke health
+
+## Documented Solutions
+
+`docs/solutions/` stores documented solutions to past problems, organized by category.
+Each solution file carries YAML frontmatter such as `module`, `problem_type`, and `tags`
+so agents can search it quickly. This knowledge store is relevant when implementing,
+debugging, or making decisions in areas that have been documented before.
