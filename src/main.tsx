@@ -1,10 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { App } from '@/app/App'
-import { restoreGithubPagesSpaPath } from '@/lib/githubPagesSpaFallback'
 import '@/styles/globals.css'
-
-restoreGithubPagesSpaPath(window)
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>

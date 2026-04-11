@@ -1,5 +1,5 @@
 import type { RouteObject } from 'react-router-dom'
-import { createBrowserRouter, createMemoryRouter } from 'react-router-dom'
+import { createHashRouter, createMemoryRouter } from 'react-router-dom'
 import { Layout } from '@/components/layout/Layout'
 import { AboutPage } from '@/pages/AboutPage'
 import { ContactPage } from '@/pages/ContactPage'
@@ -30,7 +30,7 @@ export const routes: RouteObject[] = [
 ]
 
 export function createAppRouter() {
-  return createBrowserRouter(routes)
+  return createHashRouter(routes)
 }
 
 export function createTestRouter(initialEntries: string[]) {
