@@ -5,6 +5,7 @@ import { AboutPage } from '@/pages/AboutPage'
 import { ContactPage } from '@/pages/ContactPage'
 import { HomePage } from '@/pages/HomePage'
 import { NotFoundPage } from '@/pages/NotFoundPage'
+import { OpcPage } from '@/pages/OpcPage'
 import { ProjectDetailPage } from '@/pages/ProjectDetailPage'
 import { ProjectsPage } from '@/pages/ProjectsPage'
 import { WritingDetailPage } from '@/pages/WritingDetailPage'
@@ -17,6 +18,7 @@ export const routes: RouteObject[] = [
     children: [
       { index: true, element: <HomePage /> },
       { path: 'projects', element: <ProjectsPage /> },
+      { path: 'projects/opc', element: <OpcPage /> },
       { path: 'projects/:slug', element: <ProjectDetailPage /> },
       { path: 'writing', element: <WritingPage /> },
       { path: 'writing/:slug', element: <WritingDetailPage /> },

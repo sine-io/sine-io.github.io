@@ -1,5 +1,5 @@
-import { act, render, screen } from '@testing-library/react'
-import { createMemoryRouter, MemoryRouter, RouterProvider } from 'react-router-dom'
+import { act, fireEvent, render, screen } from '@testing-library/react'
+import { createMemoryRouter, Link, MemoryRouter, Route, RouterProvider, Routes } from 'react-router-dom'
 import { siteNav } from '@/content/site'
 import { Layout } from './Layout'
 
@@ -40,27 +40,38 @@ describe('Layout', () => {
   })
 
   it('remounts the page shell when the route pathname changes', async () => {
-    const router = createMemoryRouter(
-      [
-        {
-          path: '/',
-          element: <Layout />,
-          children: [
-            { path: 'one', element: <p>route one</p> },
-            { path: 'two', element: <p>route two</p> }
-          ]
-        }
-      ],
-      { initialEntries: ['/one'] }
+    const { container } = render(
+      <MemoryRouter initialEntries={['/one']}>
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route
+              path="one"
+              element={
+                <>
+                  <Link to="/two">go to route two</Link>
+                  <p>route one</p>
+                </>
+              }
+            />
+            <Route
+              path="two"
+              element={
+                <>
+                  <Link to="/one">go to route one</Link>
+                  <p>route two</p>
+                </>
+              }
+            />
+          </Route>
+        </Routes>
+      </MemoryRouter>
     )
-
-    const { container } = render(<RouterProvider router={router} />)
 
     expect(screen.getByText('route one')).toBeInTheDocument()
     const firstShell = container.querySelector('main > div')
 
     await act(async () => {
-      await router.navigate('/two')
+      fireEvent.click(screen.getByRole('link', { name: 'go to route two' }))
     })
 
     expect(screen.getByText('route two')).toBeInTheDocument()
@@ -75,26 +86,29 @@ describe('Layout', () => {
     window.scrollTo = scrollToMock
 
     try {
-      const router = createMemoryRouter(
-        [
-          {
-            path: '/',
-            element: <Layout />,
-            children: [
-              { path: 'one', element: <p>route one</p> },
-              { path: 'two', element: <p>route two</p> }
-            ]
-          }
-        ],
-        { initialEntries: ['/one'] }
+      render(
+        <MemoryRouter initialEntries={['/one']}>
+          <Routes>
+            <Route path="/" element={<Layout />}>
+              <Route
+                path="one"
+                element={
+                  <>
+                    <Link to="/two">go to route two</Link>
+                    <p>route one</p>
+                  </>
+                }
+              />
+              <Route path="two" element={<p>route two</p>} />
+            </Route>
+          </Routes>
+        </MemoryRouter>
       )
-
-      render(<RouterProvider router={router} />)
 
       scrollToMock.mockClear()
 
       await act(async () => {
-        await router.navigate('/two')
+        fireEvent.click(screen.getByRole('link', { name: 'go to route two' }))
       })
 
       expect(scrollToMock).toHaveBeenCalledWith({ top: 0, left: 0, behavior: 'auto' })

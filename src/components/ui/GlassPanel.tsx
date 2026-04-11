@@ -1,6 +1,7 @@
-import type { PropsWithChildren } from 'react'
+import type { HTMLAttributes, PropsWithChildren } from 'react'
 
-type GlassPanelProps = PropsWithChildren<{
+type GlassPanelProps = PropsWithChildren<
+  HTMLAttributes<HTMLDivElement> & {
   className?: string
   variant?: 'default' | 'hero' | 'dense'
 }>
@@ -14,9 +15,10 @@ const panelVariantClassNames: Record<NonNullable<GlassPanelProps['variant']>, st
     'border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.06),rgba(8,17,40,0.72))] shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_16px_56px_rgba(0,0,0,0.32),inset_0_1px_0_rgba(255,255,255,0.04)]'
 }
 
-export function GlassPanel({ children, className, variant = 'default' }: GlassPanelProps) {
+export function GlassPanel({ children, className, variant = 'default', ...props }: GlassPanelProps) {
   return (
     <div
+      {...props}
       className={[
         'rounded-3xl border p-6 backdrop-blur-md',
         panelVariantClassNames[variant],
