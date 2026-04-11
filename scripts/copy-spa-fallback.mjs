@@ -1,7 +1,8 @@
-import { access, copyFile, readFile } from 'node:fs/promises'
+import { access, copyFile, readFile, writeFile } from 'node:fs/promises'
 import { constants } from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import { createGithubPagesFallbackHtml } from './spa-fallback-utils.mjs'
 
 const scriptDir = path.dirname(fileURLToPath(import.meta.url))
 const rootDir = path.resolve(scriptDir, '..')
@@ -20,15 +21,12 @@ async function assertReadable(filePath) {
 }
 
 await assertReadable(indexPath)
-await copyFile(indexPath, fallbackPath)
-await assertReadable(fallbackPath)
 await assertReadable(cnamePath)
 
-const [indexHtml, fallbackHtml] = await Promise.all([
-  readFile(indexPath, 'utf8'),
-  readFile(fallbackPath, 'utf8')
-])
+await copyFile(indexPath, fallbackPath)
+await assertReadable(fallbackPath)
 
-if (indexHtml !== fallbackHtml) {
-  throw new Error('SPA fallback verification failed: dist/404.html does not match dist/index.html')
-}
+const indexHtml = await readFile(indexPath, 'utf8')
+const fallbackHtml = createGithubPagesFallbackHtml(indexHtml)
+
+await writeFile(fallbackPath, fallbackHtml, 'utf8')
