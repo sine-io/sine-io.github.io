@@ -19,7 +19,7 @@ describe('github pages spa fallback', () => {
         pathname: '/',
         hash: '#cases'
       } as Window['location'],
-      history: { replaceState } as Window['history']
+      history: { replaceState } as unknown as Window['history']
     })
 
     expect(restored).toBe(true)
