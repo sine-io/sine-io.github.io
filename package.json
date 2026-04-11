@@ -8,7 +8,6 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "docs:build": "npm run build",
     "prebuild": "npm run assets:optimize",
     "postbuild": "node scripts/copy-spa-fallback.mjs",
     "preview": "vite preview",
