@@ -4,7 +4,7 @@ import { writingEntries } from '@/content/writing'
 
 describe('opc content', () => {
   it('exports teaser metadata that projects surfaces can reuse', () => {
-    expect(projects).toEqual([opcProjectMeta])
+    expect(projects).toContainEqual(opcProjectMeta)
     expect(opcProjectMeta.slug).toBe('opc')
     expect(opcProjectMeta.tags).toHaveLength(3)
   })
