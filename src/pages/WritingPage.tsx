@@ -1,12 +1,12 @@
-import { useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Link, useLocation } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import sectionArt from '@/assets/visuals/svg2-optimized.svg'
 import { ConstellationField } from '@/components/ui/ConstellationField'
 import { Container } from '@/components/ui/Container'
 import { GlassPanel } from '@/components/ui/GlassPanel'
 import { SectionHeading } from '@/components/ui/SectionHeading'
 import { writingCategoryMeta, writingCategoryOrder, writingEntries } from '@/content/writing'
+import { useHashScroll } from '@/hooks/useHashScroll'
 import { sectionRevealMotion } from '@/lib/motion'
 
 const writingConstellationNodes = [
@@ -56,24 +56,12 @@ const writingBandStyles: Record<
 }
 
 export function WritingPage() {
-  const location = useLocation()
+  useHashScroll()
   const categoryAnchors: Record<(typeof writingCategoryOrder)[number], string> = {
     guide: 'guides',
     note: 'notes',
     update: 'updates'
   }
-
-  useEffect(() => {
-    if (!location.hash) {
-      return
-    }
-
-    const target = document.getElementById(location.hash.slice(1))
-
-    if (target) {
-      target.scrollIntoView()
-    }
-  }, [location.hash])
 
   return (
     <Container>

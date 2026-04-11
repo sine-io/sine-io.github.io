@@ -21,7 +21,7 @@ export function ProjectDetailPage() {
   const { slug } = useParams()
   const project = projects.find((entry) => entry.slug === slug)
 
-  if (!project) {
+  if (!project || !project.sections?.length) {
     return <NotFoundPage />
   }
 

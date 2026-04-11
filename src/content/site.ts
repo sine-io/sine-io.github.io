@@ -29,7 +29,7 @@ export const homeContent = {
   browseLinks: [
     {
       label: 'OPC 专题',
-      description: '集中放置项目背景、关键概念、路线图和术语整理。',
+      description: '从当前阶段、关键信号和继续阅读路径进入 OPC 观察控制台。',
       href: '/projects/opc'
     },
     {

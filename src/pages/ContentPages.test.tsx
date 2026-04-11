@@ -22,6 +22,7 @@ describe('content pages', () => {
   it('lists OPC on the projects page', () => {
     renderWithRouter('/projects')
     expect(screen.getByText('OPC')).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: '查看详情' })).toHaveAttribute('href', '/projects/opc')
     expect(screen.getByTestId('projects-art')).toHaveAttribute('aria-hidden', 'true')
     expect(screen.getByTestId('projects-art')).toHaveAttribute('alt', '')
     expect(screen.getByTestId('projects-constellation')).toBeInTheDocument()
@@ -42,23 +43,47 @@ describe('content pages', () => {
     expect(screen.getByRole('heading', { name: 'Contact', level: 1 })).toBeInTheDocument()
   })
 
-  it('renders migrated OPC detail content from overview, roadmap, and glossary', () => {
+  it('renders the OPC observation console instead of the generic project detail layout', () => {
     renderWithRouter('/projects/opc')
-    expect(screen.getByRole('heading', { name: 'OPC', level: 1 })).toBeInTheDocument()
-    expect(screen.getByRole('heading', { name: 'OPC 术语表', level: 2 })).toBeInTheDocument()
-    expect(screen.getAllByText('OPC 术语表')).toHaveLength(1)
-    const detailFrame = screen.getByTestId('project-detail-frame')
-    expect(detailFrame).toBeInTheDocument()
-    expect(within(detailFrame).getByText('Project Entry')).toBeInTheDocument()
-    expect(detailFrame.querySelector('svg')).not.toBeNull()
-    const detailBody = detailFrame.nextElementSibling
-    expect(detailBody).not.toBeNull()
-    const detailBodyElement = detailBody as HTMLElement
-    expect(within(detailBodyElement).queryByText('Project Entry')).not.toBeInTheDocument()
-    expect(detailBodyElement.querySelector('svg')).toBeNull()
-    expect(screen.getByText('当前内容：OPC 总览导航。')).toBeInTheDocument()
-    expect(screen.getByText('这页用来跟踪 OPC 方向上的阶段目标，把要做的事拆开，避免概念和计划混在一起。')).toBeInTheDocument()
-    expect(screen.getByText('计划术语：核心对象与角色。')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'OPC 观察控制台', level: 1 })).toBeInTheDocument()
+    expect(screen.getByTestId('opc-now-panel')).toBeInTheDocument()
+    expect(screen.getByTestId('opc-stage-timeline')).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Primary reading paths', level: 2 })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Shared language', level: 2 })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'Evidence layer', level: 2 })).toBeInTheDocument()
+    expect(screen.queryByText('Project Entry')).not.toBeInTheDocument()
+    expect(screen.getByText('Stage 2 / 信号定型')).toBeInTheDocument()
+    expect(screen.getByText('阶段地图')).toBeInTheDocument()
+    expect(screen.getByText('OPC 里程碑更新')).toBeInTheDocument()
+  })
+
+  it('scrolls to the hash-targeted OPC section', () => {
+    const originalScrollIntoView = Element.prototype.scrollIntoView
+    const scrollIntoViewMock = vi.fn()
+
+    Element.prototype.scrollIntoView = scrollIntoViewMock
+    try {
+      renderWithRouter('/projects/opc#topics')
+
+      const topicsSection = document.getElementById('topics')
+      expect(topicsSection).not.toBeNull()
+      expect(scrollIntoViewMock).toHaveBeenCalled()
+      expect(scrollIntoViewMock.mock.instances).toContain(topicsSection)
+    } finally {
+      Element.prototype.scrollIntoView = originalScrollIntoView
+    }
+  })
+
+  it('links OPC cases to existing writing entries', () => {
+    renderWithRouter('/projects/opc')
+
+    const caseCard = document.getElementById('case-opc-milestone-updates')
+    expect(caseCard).not.toBeNull()
+
+    expect(within(caseCard as HTMLElement).getByRole('link', { name: '打开案例' })).toHaveAttribute(
+      'href',
+      '/writing/opc-milestone-updates'
+    )
   })
 
   it('groups writing entries from guides, notes, and updates', () => {

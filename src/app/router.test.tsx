@@ -9,7 +9,9 @@ describe('router', () => {
 
   it('renders the OPC project page at /projects/opc', () => {
     renderWithRouter('/projects/opc')
-    expect(screen.getByRole('heading', { name: 'OPC' })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: 'OPC 观察控制台' })).toBeInTheDocument()
+    expect(screen.getByTestId('opc-now-panel')).toBeInTheDocument()
+    expect(screen.queryByText('Project Entry')).not.toBeInTheDocument()
   })
 
   it('renders the writing index at /writing', () => {
@@ -29,6 +31,11 @@ describe('router', () => {
 
   it('renders not found for unknown routes', () => {
     renderWithRouter('/does-not-exist')
+    expect(screen.getByRole('heading', { name: 'Page not found' })).toBeInTheDocument()
+  })
+
+  it('renders not found for unknown project slugs', () => {
+    renderWithRouter('/projects/non-existent')
     expect(screen.getByRole('heading', { name: 'Page not found' })).toBeInTheDocument()
   })
 
