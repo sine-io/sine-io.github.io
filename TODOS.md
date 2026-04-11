@@ -39,3 +39,17 @@
 **Depends on:** `src/content/opc.ts` grows enough that schema clarity or editing ergonomics start to degrade
 
 ## Completed
+
+### Investigate SPA deep-link 404 status on GitHub Pages
+
+**What:** Reduce or eliminate the HTTP 404 response returned for direct SPA deep links like `/projects/opc` while preserving client-side route recovery.
+
+**Why:** Browser users still recover into the correct page through the mirrored `404.html` fallback, but monitors, crawlers, and console/network tooling see the route as a 404. That creates noisy diagnostics and can mask real deployment problems.
+
+**Context:** QA on 2026-04-11 confirmed the issue under the old BrowserRouter-based deployment approach. The fix switched the site to hash-based routing so shareable internal links now resolve as `/#/projects/opc`, which avoids document-level 404s on GitHub Pages without relying on edge rewrites.
+
+**Effort:** M
+**Priority:** P2
+**Depends on:** None
+
+**Completed:** Fixed by /qa on `main`, 2026-04-12
