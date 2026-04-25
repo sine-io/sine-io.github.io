@@ -5,6 +5,8 @@
   background-color: #0A1128;
   color-scheme: dark;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: geometricPrecision;
 }
 
 html {
@@ -14,9 +16,10 @@ html {
 body {
   min-height: 100vh;
   background:
-    radial-gradient(circle at 18% 14%, rgba(79, 151, 220, 0.12), transparent 24%),
-    radial-gradient(circle at 76% 18%, rgba(111, 102, 223, 0.13), transparent 20%),
-    radial-gradient(circle at 55% 78%, rgba(83, 207, 233, 0.08), transparent 24%),
+    radial-gradient(circle at 18% 14%, rgba(79, 151, 220, 0.16), transparent 24%),
+    radial-gradient(circle at 76% 18%, rgba(111, 102, 223, 0.16), transparent 20%),
+    radial-gradient(circle at 55% 78%, rgba(83, 207, 233, 0.1), transparent 24%),
+    linear-gradient(180deg, rgba(4, 9, 24, 0.22), rgba(4, 9, 24, 0.74)),
     #0A1128;
   color: #A6B4CD;
 }
@@ -34,6 +37,29 @@ body::before {
   opacity: 0.35;
 }
 
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(166, 222, 252, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(166, 222, 252, 0.035) 1px, transparent 1px);
+  background-size: 96px 96px;
+  mask-image: radial-gradient(circle at 50% 18%, black, transparent 72%);
+  opacity: 0.45;
+}
+
 #root {
   min-height: 100vh;
+}
+
+::selection {
+  background: rgba(93, 227, 233, 0.28);
+  color: #F4FAFF;
+}
+
+:focus-visible {
+  outline: 2px solid rgba(93, 227, 233, 0.84);
+  outline-offset: 4px;
 }

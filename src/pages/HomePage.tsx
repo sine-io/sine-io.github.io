@@ -5,6 +5,7 @@ import { ConstellationField } from '@/components/ui/ConstellationField'
 import { Container } from '@/components/ui/Container'
 import { GlassPanel } from '@/components/ui/GlassPanel'
 import { SectionHeading } from '@/components/ui/SectionHeading'
+import { opcContent } from '@/content/opc'
 import { projects } from '@/content/projects'
 import { homeContent } from '@/content/site'
 import { writingEntries } from '@/content/writing'
@@ -36,6 +37,8 @@ const homePanelStyles = {
     'rounded-[1.65rem] border-[#A6DEFC]/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(10,18,38,0.82))] shadow-[0_0_0_1px_rgba(166,222,252,0.05),0_18px_72px_rgba(0,0,0,0.34),inset_0_1px_0_rgba(255,255,255,0.05)]',
   writing:
     'rounded-[1.5rem] border-white/10 bg-[linear-gradient(180deg,rgba(255,255,255,0.07),rgba(6,13,30,0.84))] shadow-[0_0_0_1px_rgba(255,255,255,0.03),0_18px_72px_rgba(0,0,0,0.36),inset_0_1px_0_rgba(255,255,255,0.05)]',
+  opc:
+    'relative isolate overflow-hidden border-[#A6DEFC]/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(7,15,34,0.88))] shadow-[0_0_0_1px_rgba(166,222,252,0.05),0_28px_100px_rgba(0,0,0,0.38),0_0_60px_rgba(93,227,233,0.1)]',
   photo: 'bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(8,17,40,0.64))]',
   contact:
     'relative isolate overflow-hidden border-[#A6DEFC]/16 bg-[linear-gradient(180deg,rgba(255,255,255,0.09),rgba(8,17,40,0.78))]',
@@ -135,6 +138,68 @@ export function HomePage() {
               </GlassPanel>
               ))}
             </div>
+          </motion.section>
+
+          <motion.section {...sectionRevealMotion} className="space-y-8">
+            <SectionHeading
+              eyebrow="OPC Console"
+              title="Observation Console Preview"
+              description="用一个控制台片段展示“当前阶段 -> 信号 -> 去向”的阅读链路。"
+            />
+            <GlassPanel variant="hero" className={homePanelStyles.opc}>
+              <div className="pointer-events-none absolute right-[-18%] top-[-28%] h-96 w-96 rounded-full bg-[radial-gradient(circle,rgba(93,227,233,0.16),rgba(93,227,233,0))]" />
+              <svg
+                aria-hidden="true"
+                viewBox="0 0 900 360"
+                className="pointer-events-none absolute right-[-5%] top-[-10%] h-[70%] w-[62%] opacity-35"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M36 160C128 82 246 70 354 132C468 198 562 196 670 126C756 70 830 70 900 116" stroke="rgba(166, 222, 252, 0.42)" strokeWidth="2" fill="none" />
+                <path d="M72 236C198 176 302 176 412 238C522 300 644 292 784 208" stroke="rgba(93, 227, 233, 0.36)" strokeWidth="1.4" strokeDasharray="8 12" fill="none" />
+                <circle cx="354" cy="132" r="4" fill="rgba(166, 222, 252, 0.72)" />
+                <circle cx="670" cy="126" r="4" fill="rgba(93, 227, 233, 0.72)" />
+              </svg>
+              <div className="relative z-10 grid gap-6 lg:grid-cols-[0.88fr_1.12fr]">
+                <div className="space-y-5">
+                  <div className="space-y-2">
+                    <p className="font-mono text-xs uppercase tracking-[0.35em] text-[#A6DEFC]">{opcContent.eyebrow}</p>
+                    <h3 className="text-3xl font-semibold tracking-[-0.04em] text-white">{opcContent.title}</h3>
+                    <p className="text-sm leading-7 text-[#C8D9EE]">{opcContent.description}</p>
+                  </div>
+                  <div className="rounded-[1.5rem] border border-[#A6DEFC]/18 bg-black/10 p-5">
+                    <p className="text-xs uppercase tracking-[0.3em] text-[#A6DEFC]">Now</p>
+                    <p className="mt-3 text-2xl font-semibold text-white">{opcContent.now.stageLabel}</p>
+                    <p className="mt-3 text-sm leading-7 text-[#B8C9E0]">{opcContent.now.recentChange}</p>
+                  </div>
+                </div>
+                <div className="space-y-5">
+                  <div className="rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-5">
+                    <p className="text-xs uppercase tracking-[0.3em] text-[#75B3E1]">Current judgment</p>
+                    <p className="mt-3 text-sm leading-7 text-[#DCEBFB]">{opcContent.now.currentJudgment}</p>
+                  </div>
+                  <div className="grid gap-4 md:grid-cols-3">
+                    {opcContent.stages.slice(1, 4).map((stage) => (
+                      <div key={stage.id} className="rounded-[1.25rem] border border-white/10 bg-[#071226]/58 p-4 transition hover:-translate-y-1 hover:border-[#75B3E1]/50">
+                        <p className="font-mono text-[0.68rem] uppercase tracking-[0.26em] text-[#75B3E1]">{stage.eyebrow}</p>
+                        <p className="mt-3 text-sm font-semibold text-white">{stage.title}</p>
+                        <p className="mt-2 text-xs leading-6 text-[#A6B4CD]">{stage.timeframe}</p>
+                      </div>
+                    ))}
+                  </div>
+                  <div className="grid gap-3 md:grid-cols-3">
+                    {['Topics', 'Terms', 'Cases'].map((label) => (
+                      <Link
+                        key={label}
+                        to="/projects/opc"
+                        className="rounded-full border border-[#A6DEFC]/16 bg-black/10 px-4 py-3 text-center text-xs uppercase tracking-[0.28em] text-[#A6DEFC] transition hover:border-[#75B3E1] hover:text-white"
+                      >
+                        {label}
+                      </Link>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </GlassPanel>
           </motion.section>
 
           <motion.section

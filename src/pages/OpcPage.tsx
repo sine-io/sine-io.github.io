@@ -62,6 +62,17 @@ export function OpcPage() {
           <div className="pointer-events-none absolute inset-x-0 top-0 h-28 bg-[linear-gradient(180deg,rgba(166,222,252,0.12),rgba(166,222,252,0))]" />
           <div className="pointer-events-none absolute left-[-12%] top-[-24%] h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(93,227,233,0.18),rgba(93,227,233,0))]" />
           <div className="pointer-events-none absolute right-[-16%] top-[-18%] h-96 w-96 rounded-full bg-[radial-gradient(circle,rgba(117,179,225,0.16),rgba(117,179,225,0))]" />
+          <svg
+            aria-hidden="true"
+            viewBox="0 0 920 340"
+            className="pointer-events-none absolute right-[-6%] top-[-8%] h-[62%] w-[58%] opacity-35"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M34 186C122 116 226 94 336 140C452 190 536 202 650 132C742 76 836 72 916 118" stroke="rgba(166, 222, 252, 0.46)" strokeWidth="1.6" fill="none" />
+            <path d="M108 250C222 196 322 202 420 254C536 314 656 286 812 178" stroke="rgba(93, 227, 233, 0.34)" strokeWidth="1.2" strokeDasharray="7 11" fill="none" />
+            <circle cx="336" cy="140" r="4" fill="rgba(166, 222, 252, 0.78)" />
+            <circle cx="650" cy="132" r="4" fill="rgba(93, 227, 233, 0.78)" />
+          </svg>
           <ConstellationField
             testId="opc-constellation"
             nodes={opcConstellationNodes}
@@ -122,17 +133,21 @@ export function OpcPage() {
             title="Stage timeline"
             description="先定位当前阶段，再从代表性信号继续跳到更值得继续读的地方。"
           />
-          <div data-testid="opc-stage-timeline" className="grid gap-6">
-            {opcContent.stages.map((stage) => (
+          <div data-testid="opc-stage-timeline" className="relative grid gap-6">
+            <div className="pointer-events-none absolute left-5 top-5 hidden h-[calc(100%-2.5rem)] w-px bg-[linear-gradient(180deg,rgba(166,222,252,0),rgba(166,222,252,0.36),rgba(166,222,252,0))] md:block" />
+            {opcContent.stages.map((stage, stageIndex) => (
               <GlassPanel
                 key={stage.id}
                 variant="dense"
-                className="rounded-[1.8rem] border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(7,16,36,0.84))]"
+                className="relative rounded-[1.8rem] border-white/8 bg-[linear-gradient(180deg,rgba(255,255,255,0.08),rgba(7,16,36,0.84))] hover:-translate-y-1 hover:border-[#A6DEFC]/24"
               >
+                <span className="absolute -left-2 top-7 hidden h-4 w-4 rounded-full border border-[#A6DEFC]/40 bg-[#071226] shadow-[0_0_24px_rgba(93,227,233,0.24)] md:block" />
                 <div className="space-y-5">
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <div className="space-y-2">
-                      <p className="text-xs uppercase tracking-[0.3em] text-[#75B3E1]">{stage.eyebrow}</p>
+                      <p className="text-xs uppercase tracking-[0.3em] text-[#75B3E1]">
+                        {stage.eyebrow} / {String(stageIndex + 1).padStart(2, '0')}
+                      </p>
                       <h2 className="text-2xl font-semibold text-white">{stage.title}</h2>
                     </div>
                     <span className="rounded-full border border-[#A6DEFC]/16 bg-white/[0.03] px-4 py-2 text-xs uppercase tracking-[0.24em] text-[#D7F3FF]">
@@ -150,13 +165,15 @@ export function OpcPage() {
                     {stage.signals.map((signal) => (
                       <div
                         key={signal.id}
-                        className="rounded-[1.35rem] border border-white/10 bg-white/[0.03] px-5 py-4"
+                        className="rounded-[1.35rem] border border-white/10 bg-white/[0.03] px-5 py-4 transition hover:border-[#75B3E1]/42 hover:bg-white/[0.05]"
                       >
-                        <p className="text-sm leading-7 text-white">{signal.change}</p>
-                        <p className="mt-3 text-sm leading-7 text-[#B8C9E0]">{signal.meaning}</p>
+                        <p className="font-mono text-[0.68rem] uppercase tracking-[0.26em] text-[#75B3E1]">Change</p>
+                        <p className="mt-2 text-sm leading-7 text-white">{signal.change}</p>
+                        <p className="mt-3 font-mono text-[0.68rem] uppercase tracking-[0.26em] text-[#75B3E1]">Meaning</p>
+                        <p className="mt-2 text-sm leading-7 text-[#B8C9E0]">{signal.meaning}</p>
                         <Link
                           to={buildOpcTargetHref(signal.target)}
-                          className="mt-4 inline-flex text-sm font-medium text-[#75B3E1] transition hover:text-white"
+                          className="mt-4 inline-flex rounded-full border border-[#A6DEFC]/14 bg-black/10 px-4 py-2 text-sm font-medium text-[#75B3E1] transition hover:border-[#75B3E1] hover:text-white"
                         >
                           {signal.nextLabel}
                         </Link>

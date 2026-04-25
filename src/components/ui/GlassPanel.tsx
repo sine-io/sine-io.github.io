@@ -20,7 +20,7 @@ export function GlassPanel({ children, className, variant = 'default', ...props 
     <div
       {...props}
       className={[
-        'rounded-3xl border p-6 backdrop-blur-md',
+        'rounded-3xl border p-6 backdrop-blur-md transition duration-300',
         panelVariantClassNames[variant],
         className
       ]

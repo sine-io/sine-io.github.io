@@ -15,8 +15,8 @@ export function SectionHeading({ eyebrow, title, description, level = 2, tone = 
   return (
     <div className="space-y-3">
       <p className={`text-xs uppercase tracking-[0.35em] ${eyebrowClassName}`}>{eyebrow}</p>
-      <HeadingTag className={`text-3xl font-semibold ${titleClassName}`}>{title}</HeadingTag>
-      {description ? <p className={`max-w-2xl text-sm ${descriptionClassName}`}>{description}</p> : null}
+      <HeadingTag className={`text-3xl font-semibold tracking-[-0.03em] ${titleClassName}`}>{title}</HeadingTag>
+      {description ? <p className={`max-w-2xl text-sm leading-7 ${descriptionClassName}`}>{description}</p> : null}
     </div>
   )
 }

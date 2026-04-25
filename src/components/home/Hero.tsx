@@ -35,6 +35,8 @@ export function Hero() {
           <div className="pointer-events-none absolute inset-x-0 top-0 h-24 bg-[linear-gradient(180deg,rgba(166,222,252,0.12),rgba(166,222,252,0))]" />
           <div className="pointer-events-none absolute left-[-12%] top-[-24%] h-72 w-72 rounded-full bg-[radial-gradient(circle,rgba(93,227,233,0.18),rgba(93,227,233,0))]" />
           <div className="pointer-events-none absolute right-[-16%] top-[-18%] h-96 w-96 rounded-full bg-[radial-gradient(circle,rgba(123,44,191,0.18),rgba(123,44,191,0))]" />
+          <div className="pointer-events-none absolute inset-x-8 top-8 h-px bg-[linear-gradient(90deg,rgba(166,222,252,0),rgba(166,222,252,0.28),rgba(166,222,252,0))]" />
+          <div className="pointer-events-none absolute bottom-8 left-8 right-8 h-px bg-[linear-gradient(90deg,rgba(93,227,233,0),rgba(93,227,233,0.24),rgba(93,227,233,0))]" />
 
           <ConstellationField
             testId="hero-constellation"
@@ -51,43 +53,83 @@ export function Hero() {
             className="pointer-events-none absolute bottom-[-10%] right-[-8%] h-[88%] max-w-[36rem] object-contain opacity-80"
           />
 
-          <div className="relative z-10 flex min-h-[26rem] flex-col items-center justify-center px-6 py-20 text-center">
-            <motion.h1
-              {...fadeUp}
-              transition={{ duration: 0.7, ease: 'easeOut' }}
-              className="text-5xl font-bold tracking-tight text-white sm:text-6xl md:text-7xl"
-            >
-              Hi, I&apos;m sine-io.
-            </motion.h1>
+          <div className="pointer-events-none absolute bottom-10 left-8 hidden w-64 rounded-[1.5rem] border border-white/10 bg-black/10 p-4 text-left backdrop-blur md:block">
+            <p className="font-mono text-[0.65rem] uppercase tracking-[0.28em] text-[#75B3E1]">Observation</p>
+            <div className="mt-3 space-y-2">
+              {['COSBench', 'Vdbench', 'OPC Console'].map((item, index) => (
+                <div key={item} className="flex items-center gap-3 text-xs text-[#D7E3F4]">
+                  <span className="text-[#5DE3E9]">{String(index + 1).padStart(2, '0')}</span>
+                  <span className="h-px flex-1 bg-[#A6DEFC]/16" />
+                  <span>{item}</span>
+                </div>
+              ))}
+            </div>
+          </div>
 
-            <motion.p
-              {...fadeUp}
-              transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
-              className="mt-6 bg-gradient-to-r from-[#00E5FF] to-[#7B2CBF] bg-clip-text text-2xl font-semibold text-transparent sm:text-3xl"
-            >
-              Input / Output the Future.
-            </motion.p>
+          <div className="relative z-10 grid min-h-[32rem] items-center gap-10 px-6 py-20 lg:grid-cols-[0.78fr_0.22fr] lg:px-10">
+            <div className="mx-auto max-w-3xl text-center lg:col-span-2">
+              <motion.p
+                {...fadeUp}
+                transition={{ duration: 0.7, ease: 'easeOut' }}
+                className="mb-5 font-mono text-xs uppercase tracking-[0.45em] text-[#A6DEFC]"
+              >
+                Cyber-Wave Knowledge Base
+              </motion.p>
+              <motion.h1
+                {...fadeUp}
+                transition={{ duration: 0.7, delay: 0.05, ease: 'easeOut' }}
+                className="text-5xl font-bold tracking-[-0.06em] text-white sm:text-6xl md:text-7xl"
+              >
+                Hi, I&apos;m sine-io.
+              </motion.h1>
+
+              <motion.p
+                {...fadeUp}
+                transition={{ duration: 0.7, delay: 0.15, ease: 'easeOut' }}
+                className="mt-6 bg-gradient-to-r from-[#00E5FF] via-[#A6DEFC] to-[#7B2CBF] bg-clip-text text-2xl font-semibold text-transparent sm:text-3xl"
+              >
+                Input / Output the Future.
+              </motion.p>
+
+              <motion.p
+                {...fadeUp}
+                transition={{ duration: 0.7, delay: 0.24, ease: 'easeOut' }}
+                className="mx-auto mt-6 max-w-2xl text-sm leading-7 text-[#C2D0E5]"
+              >
+                性能测试、工具拆解与 OPC 知识沉淀，被组织成清晰的教程入口、技术笔记和观察控制台。
+              </motion.p>
+
+              <motion.div
+                {...fadeUp}
+                transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
+                className="mt-10 flex flex-wrap items-center justify-center gap-4"
+              >
+                <Link
+                  to="/writing#guides"
+                  className="rounded-full bg-[#00E5FF] px-6 py-3 text-sm font-semibold text-[#0A1128] shadow-[0_0_0_rgba(0,229,255,0)] transition hover:-translate-y-1 hover:shadow-[0_0_28px_rgba(0,229,255,0.45)]"
+                >
+                  Read Tutorials
+                </Link>
+
+                <a
+                  href="https://github.com/sine-io"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="rounded-full border border-[#00E5FF] bg-transparent px-6 py-3 text-sm font-semibold text-[#00E5FF] transition hover:-translate-y-1 hover:bg-[#00E5FF] hover:text-[#0A1128]"
+                >
+                  GitHub Profile
+                </a>
+              </motion.div>
+            </div>
 
             <motion.div
               {...fadeUp}
-              transition={{ duration: 0.7, delay: 0.3, ease: 'easeOut' }}
-              className="mt-10 flex flex-wrap items-center justify-center gap-4"
+              transition={{ duration: 0.7, delay: 0.38, ease: 'easeOut' }}
+              className="absolute right-8 top-1/2 hidden w-56 -translate-y-1/2 rounded-[1.5rem] border border-[#A6DEFC]/14 bg-[#071226]/60 p-4 text-left shadow-[0_16px_60px_rgba(0,0,0,0.28)] backdrop-blur lg:block"
             >
-              <Link
-                to="/writing#guides"
-                className="rounded-full bg-[#00E5FF] px-6 py-3 text-sm font-semibold text-[#0A1128] shadow-[0_0_0_rgba(0,229,255,0)] transition hover:-translate-y-1 hover:shadow-[0_0_28px_rgba(0,229,255,0.45)]"
-              >
-                Read Tutorials
-              </Link>
-
-              <a
-                href="https://github.com/sine-io"
-                target="_blank"
-                rel="noreferrer"
-                className="rounded-full border border-[#00E5FF] bg-transparent px-6 py-3 text-sm font-semibold text-[#00E5FF] transition hover:bg-[#00E5FF] hover:text-[#0A1128]"
-              >
-                GitHub Profile
-              </a>
+              <p className="font-mono text-[0.65rem] uppercase tracking-[0.28em] text-[#75B3E1]">Now</p>
+              <p className="mt-3 text-lg font-semibold text-white">Stage 2</p>
+              <p className="mt-2 text-xs leading-6 text-[#A6B4CD]">信号定型，沿阶段、信号和证据进入 OPC。</p>
             </motion.div>
           </div>
         </GlassPanel>
